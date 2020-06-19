@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from .models import Pokemon, PokemonType
-import random
+from .models import Ride
 
 def index(request):
     
