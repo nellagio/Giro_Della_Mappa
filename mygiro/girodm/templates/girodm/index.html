@@ -3,7 +3,18 @@
 
 <head>
   {% load static %}
+  <script src="secrets.js"> </script>
   <link rel="stylesheet" type="text/css" href="{% static 'girodm/index.css' %}">
+  <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js">
+  </script>
+  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+
+  <style>
+    .map_div {
+      height: 400px;
+    }
+  </style>
+
   <meta charset="UTF-8">
   <meta name="description" content="ride tracker">
   <meta name="keywords" content="portland, oregon, ride, bicycle, bike, social, pedalpalooza">
@@ -14,18 +25,58 @@
 
 <body>
   <div class="header">
-      <h2>Giro della Mappa</h2>
+    <h2>Giro della Mappa</h2>
     </a>
-  </div>
-  
   </div>
 
   <div class="main">
-    <h1> you did it</h1>
+    <div class="map_div" id="map">
+
+    </div>
   </div>
 
   <div class="footer">
-    <a>Giro della Mappa</a> <p>&copy; 2020</p>
-    </div>
+    <a>Giro della Mappa</a>
+    <p>&copy; 2020</p>
+  </div>
+  <script>
+
+    L.mapquest.key = 'XjPh6iQIwoGm3c6gEqJgqUkKFUcijmaM';
+    var baseLayer = L.mapquest.tileLayer('dark');
+    L.mapquest.geocoding().geocode(['Portland, OR'], showMap);
+    console.log(apiKey)
+    function showMap(err, data) {
+      var map = createMap();
+      map.addControl(L.mapquest.control());
+      addLayerControl(map);
+    }
+
+    function createMap(user_coords) {
+      var map = L.mapquest.map('map', {
+        center: user_coords,
+        zoom: 14,
+        layers: baseLayer
+      });
+      return map;
+    }
+
+    function addLayerControl(map) {
+      L.control.layers({
+        'Map': L.mapquest.tileLayer('map'),
+        'Satellite': L.mapquest.tileLayer('satellite'),
+        'Hybrid': L.mapquest.tileLayer('hybrid'),
+        'Light': L.mapquest.tileLayer('light'),
+        'Dark': baseLayer
+      }, {}, { position: 'topleft' }).addTo(map);
+    }
+    navigator.geolocation.getCurrentPosition(position => {
+      let user_latitude = position.coords.latitude
+      let user_longitude = position.coords.longitude
+      let user_coords = [user_latitude, user_longitude]
+      console.log(user_coords)
+      return user_coords
+    })
+  </script>
+</body>
 
 </html>
