@@ -1,17 +1,18 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
-  {% load static %}
-  <script src="secrets.js"> </script>
+
   <link rel="stylesheet" type="text/css" href="{% static 'girodm/index.css' %}">
-  <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js">
-  </script>
-  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+  <script src="{% static 'girodm/secrets.js' %}"> </script>
 
   <style>
-    .map_div {
+    #map {
+      width: 100%;
       height: 400px;
+      background-color: grey;
     }
   </style>
 
@@ -24,15 +25,14 @@
 </head>
 
 <body>
+  <!-- recaptua -->
   <div class="header">
     <h2>Giro della Mappa</h2>
     </a>
   </div>
 
-  <div class="main">
-    <div class="map_div" id="map">
+  <div id="map">
 
-    </div>
   </div>
 
   <div class="footer">
@@ -40,42 +40,31 @@
     <p>&copy; 2020</p>
   </div>
   <script>
-
-    L.mapquest.key = 'XjPh6iQIwoGm3c6gEqJgqUkKFUcijmaM';
-    var baseLayer = L.mapquest.tileLayer('dark');
-    L.mapquest.geocoding().geocode(['Portland, OR'], showMap);
-    console.log(apiKey)
-    function showMap(err, data) {
-      var map = createMap();
-      map.addControl(L.mapquest.control());
-      addLayerControl(map);
+    let apiKeyJavascriptMap = apiKeyJavascriptMap
+    console.log(apiKeyJavascriptMap)
+    let getCoords = function () {
+      navigator.geolocation.getCurrentPosition(position => {
+        let user_latitude = positin.coords.latitude
+        let user_longitude = position.coords.longitude
+        let user_coords = [user_latitude, user_longitude]
+        console.log(user_coords)
+        return user_coords
+      })
+     
+      function initMap() {
+       
+        var user_coords = user_coords;
+       
+        var map = new google.maps.Map(
+          document.getElementById('map'), { zoom: 4, center: user_coords });
+       
+        var marker = new google.maps.Marker({ position: user_coords, map: map });
+      }
     }
 
-    function createMap(user_coords) {
-      var map = L.mapquest.map('map', {
-        center: user_coords,
-        zoom: 14,
-        layers: baseLayer
-      });
-      return map;
-    }
-
-    function addLayerControl(map) {
-      L.control.layers({
-        'Map': L.mapquest.tileLayer('map'),
-        'Satellite': L.mapquest.tileLayer('satellite'),
-        'Hybrid': L.mapquest.tileLayer('hybrid'),
-        'Light': L.mapquest.tileLayer('light'),
-        'Dark': baseLayer
-      }, {}, { position: 'topleft' }).addTo(map);
-    }
-    navigator.geolocation.getCurrentPosition(position => {
-      let user_latitude = position.coords.latitude
-      let user_longitude = position.coords.longitude
-      let user_coords = [user_latitude, user_longitude]
-      console.log(user_coords)
-      return user_coords
-    })
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{apiKeyJavascriptMap}}">
   </script>
 </body>
 
