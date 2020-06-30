@@ -40,32 +40,32 @@
     <p>&copy; 2020</p>
   </div>
   <script>
-    let apiKeyJavascriptMap = apiKeyJavascriptMap
-    console.log(apiKeyJavascriptMap)
-    let getCoords = function () {
+    // Create the script tag, set the appropriate attributes
+    var script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBuCI5gynetjVyX4UHmGMkHcWNORuZxrJ4&callback=initMap';
+    script.defer = true;
+    script.async = true;
+
+    // Attach your callback function to the `window` object
+    window.initMap = function () {
       navigator.geolocation.getCurrentPosition(position => {
-        let user_latitude = positin.coords.latitude
+        let user_latitude = position.coords.latitude
         let user_longitude = position.coords.longitude
-        let user_coords = [user_latitude, user_longitude]
+        let user_coords = {lat: user_latitude, lng: user_longitude}
         console.log(user_coords)
-        return user_coords
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: user_coords,
+          zoom: 8
+        });
+
       })
-     
-      function initMap() {
-       
-        var user_coords = user_coords;
-       
-        var map = new google.maps.Map(
-          document.getElementById('map'), { zoom: 4, center: user_coords });
-       
-        var marker = new google.maps.Marker({ position: user_coords, map: map });
-      }
-    }
+    };
+    
+    // Append the 'script' element to 'head'
+    document.head.appendChild(script);
 
   </script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key={{apiKeyJavascriptMap}}">
-  </script>
+
 </body>
 
 </html>
