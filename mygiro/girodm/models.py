@@ -7,7 +7,7 @@ RIDE_TYPE = (
 )
 
 class Ride(models.Model):
-
+    
     ride_name = models.CharField(max_length=30)
     host_name = models.CharField(max_length=30)
     start_location = models.CharField(max_length=200)
@@ -15,8 +15,8 @@ class Ride(models.Model):
     end_location = models.CharField(max_length=200)
     end_time = models.DateTimeField()
     private = models.BooleanField(default=False)
-    code = models.CharField(max_length=30) 
-    comments = models.CharField(max_length=400)
+    code = models.CharField(max_length=10) 
+    comments = models.TextField()
     pace = models.CharField(
         max_length=200,
         choices=RIDE_TYPE,
@@ -25,5 +25,5 @@ class Ride(models.Model):
     # forgeign key to user model for users
     # ride paceModel foreign key
     def __str__(self):
-        return self.name
+        return self.ride_name
     

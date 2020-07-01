@@ -18,10 +18,10 @@ from django.urls import path, include
 from . import views
 from django.urls import path
 
-app_name = 'mysite'
+app_name = 'mygiro'
 
 urlpatterns = [
-
     path('', views.index, name='index'),
     path('admin/', admin.site.urls),
+    path('', include('girodm.urls')),
 ]
