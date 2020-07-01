@@ -8,15 +8,14 @@ RIDE_TYPE = (
 
 class Ride(models.Model):
 
+    ride_name = models.CharField(max_length=30)
     host_name = models.CharField(max_length=30)
-    # prioritize start points/ end points 
     start_location = models.CharField(max_length=200)
     start_time = models.DateTimeField()
-    # waypoints v2 foreign to the ride waypoint model
-    waypoint = models.CharField(max_length=200) 
     end_location = models.CharField(max_length=200)
     end_time = models.DateTimeField()
     private = models.BooleanField(default=False)
+    code = models.CharField(max_length=30) 
     comments = models.CharField(max_length=400)
     pace = models.CharField(
         max_length=200,

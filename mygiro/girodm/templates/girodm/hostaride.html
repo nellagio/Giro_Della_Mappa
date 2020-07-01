@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+    </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host a Ride - GiroDM</title>
+</head>
+
+<body>
+ 
+    <form action="{% url 'users:login_user' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="rideName" value="rideName" placeholder="Ride name"/>
+        <input type="text" name="hostName" value="hostName" placeholder="Your name">
+        <input type="text" name="startLocation" value="startLocation" placeholder="Starting location">
+        <input type="text" name="endLocation" value="endLocation" placeholder="Ending location">
+        <input type="text" name="startTime" value="startTime" placeholder="Starting time">
+        <input type="text" name="endTime" value="endTime" placeholder="Ending time">
+        <label class="radio">
+            <input type="radio" name="public" value="public" checked>
+            Public event
+          </label>
+          <label class="radio">
+            <input type="radio" name="private" value="private">
+            Private event
+          </label>
+        <input type="text" name="comments" value="comments" placeholder="Additional comments:">
+        <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf
+        "></div>
+        <button type="submit">Host your ride</button>
+
+    </form>
+    <script>
+    </script>
+</body>
+
+</html>
