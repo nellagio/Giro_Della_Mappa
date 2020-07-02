@@ -8,6 +8,11 @@
     <title>View Rides - GiroDM</title>
 </head>
 <body>
+    <h1>current rides:</h1>
+     {% for ride in rides%}
+     {% comment %} random code queries to find right url {% endcomment %}
+        <a href="{% url "girodm:detail" ride.code %}" >{{ride.ride_name}}</a>
+    {% endfor %}
     <script>
     </script>
 </body>

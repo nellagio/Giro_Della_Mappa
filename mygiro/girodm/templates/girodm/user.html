@@ -3,11 +3,17 @@
 <head>
     <style>
     </style>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{User} - GiroDM</title>
+    <title>{{request.user}} - GiroDM</title>
 </head>
 <body>
+    <span>Hello, {{request.user}}  </span>
+    <a href="{% url 'girodm:host' %}">Host a ride</a>
+
+    {% comment %} ride.objects.filter for loop to go over all rides and find the user's rides {% endcomment %}
+    <span><a href="{% url 'girodm:logout'%}">Logout</a></span>
     <script>
     </script>
 </body>

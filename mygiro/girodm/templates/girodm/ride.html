@@ -18,5 +18,7 @@
     <p>Ride url to share: http://localhost:8000/ride/{{ride.code}}/</p>
     <p>Additional information: {{ride.comments}}</p>
     
+    <span><a href="{% url 'girodm:user'%}">Back</a></span>
+    <span><a href="{% url 'girodm:logout'%}">Logout</a></span>
 </body>
 </html>

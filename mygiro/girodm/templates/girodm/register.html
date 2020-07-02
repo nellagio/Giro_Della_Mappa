@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+{% load static %}
     <style>
+        .form_input{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - GiroDM</title>
 </head>
+
 <body>
-    <h1> login fool! </h1>
-    <form method="POST" action="">
-    {% csrf_token %}
-    {{form.username.label}}
-    {{form.username}}
-    {{form.first_name.label}}
-    {{form.first_name}}
-    {{form.email.label}}
-    {{form.email}}
+    <div class="main">
+        <h1> Register here </h1>
+        <form method="POST" action="">
+            {% csrf_token %}
 
-    {{form.password1.label}}
-    {{form.password1}}
-    {{form.password2.label}}
-    {{form.password2}}
-    
-    <input type="submit" name="Create User">
-    </form>
+            <form class="form_input">
+                {{form.username.label}}
+                {{form.username}}
+                {{form.first_name.label}}
+                {{form.first_name}}
+                {{form.email.label}}
+                {{form.email}}
 
+                {{form.password1.label}}
+                {{form.password1}}
+                {{form.password2.label}}
+                {{form.password2}}
+
+                <input type="submit" name="Create User">
+            </form>
+            
+            <p>Already have a login? <a href="{% url 'girodm:login' %}">Login here</a>
+            {{form.errors}}
+        </form>
+    </div>
     <script>
     </script>
 </body>
+
 </html>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
 RIDE_TYPE = (
     ("ff","Family Friendly"),
@@ -7,7 +8,8 @@ RIDE_TYPE = (
 )
 
 class Ride(models.Model):
-    
+
+    user = models.ForeignKey(get_user_model(),null=True, blank=True, on_delete=models.CASCADE)
     ride_name = models.CharField(max_length=30)
     host_name = models.CharField(max_length=30)
     start_location = models.CharField(max_length=200)
@@ -22,8 +24,12 @@ class Ride(models.Model):
         choices=RIDE_TYPE,
         default = 'ff'
     )
-    # forgeign key to user model for users
-    # ride paceModel foreign key
+
     def __str__(self):
-        return self.ride_name
+        return self.ride_name 
+
+# class Profile(models.Model):
+#     user = models.ForeignKey("", verbose_name=_(""), on_delete=models.CASCADE)
+#     def __str__(self):
+#         return self.user
     
