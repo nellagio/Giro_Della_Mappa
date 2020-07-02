@@ -21,24 +21,24 @@
     <div class="main">
         <form class="form" action="{% url 'girodm:createride' %}" method="post">
             {% csrf_token %}
-            <input type="text" name="rideName" value="rideName" placeholder="Ride name" />
-            <input type="text" name="hostName" value="hostName" placeholder="Your name">
+            <input type="text" name="rideName" value="" placeholder="Ride name" />
+            <input type="text" name="hostName" value="" placeholder="Your name">
             <label class="radio">
-                <input type="radio" name="pace" value="social" checked>
+                <input type="radio" name="pace" value="ep" checked>
                 Social Ride
             </label>
             <label class="radio">
-                <input type="radio" name="pace" value="family">
+                <input type="radio" name="pace" value="ff">
                 Family Friendly
             </label>
             <label class="radio">
-                <input type="radio" name="pace" value="training">
+                <input type="radio" name="pace" value="tp">
                 Training Ride
             </label>
-            <input type="text" name="startLocation" value="startLocation" placeholder="Starting location">
-            <input type="text" name="endLocation" value="endLocation" placeholder="Ending location">
-            <input type="text" name="startTime" value="startTime" placeholder="Starting time">
-            <input type="text" name="endTime" value="endTime" placeholder="Ending time">
+            <input type="text" name="startLocation" value="" placeholder="Starting location">
+            <input type="text" name="endLocation" value="" placeholder="Ending location">
+            <input type="text" name="startTime" value="" placeholder="Starting time">
+            <input type="text" name="endTime" value="" placeholder="Ending time">
             <label class="radio">
                 <input type="radio" name="private" value="public" checked>
                 Public event
@@ -47,7 +47,7 @@
                 <input type="radio" name="private" value="private">
                 Private event
             </label>
-            <textarea name="comments" value="comments">Additional comments: "will be a hot one, bring plenty of water and snacks"
+            <textarea name="comments" value="">Additional comments: "will be a hot one, bring plenty of water and snacks"
             </textarea>
             <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf
         "></div>

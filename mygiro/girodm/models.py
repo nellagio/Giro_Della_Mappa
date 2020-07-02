@@ -2,7 +2,7 @@ from django.db import models
 
 RIDE_TYPE = (
     ("ff","Family Friendly"),
-    ("ep","Social (Eighteen +)"),
+    ("ep","Social (18/21+)"),
     ("tp","Training Pace"),
 )
 
@@ -20,7 +20,7 @@ class Ride(models.Model):
     pace = models.CharField(
         max_length=200,
         choices=RIDE_TYPE,
-        default = 'fam'
+        default = 'ff'
     )
     # forgeign key to user model for users
     # ride paceModel foreign key

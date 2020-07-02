@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ride.ridename}}</title>
+    <title>{{ride.ride_name}} - GiroDM
+    </title>
 </head>
 <body>
-    <h1>{{ride.ridename}}</h1>
+    <h1>{{ride.ride_name}}</h1>
+    <p>Hosted by: {{ride.host_name}}</p>
+    <p>Pace: {{ride.get_pace_display}}</p>
+    <p>Start location: {{ride.start_location}}</p>
+    <p>Start time: {{ride.start_time}}</p>
+    <p>Ending location: {{ride.end_location}}</p>
+    <p>Estimated ending time: {{ride.end_time}}</p>
+    <p>Is a private event: {{ride.private}}</p>
+    <p>Ride url to share: http://localhost:8000/ride/{{ride.code}}/</p>
+    <p>Additional information: {{ride.comments}}</p>
+    
 </body>
 </html>

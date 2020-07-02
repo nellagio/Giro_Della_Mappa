@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
     </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - GiroDM</title>
 </head>
+
 <body>
+    {% comment %} {% if message == 'failure' %}
+    <h3 style="color:red">That username and password do not match</h3>
+    {% elif message == 'loggedout' %}
+    <h3 style="color:blue">Successfully logged out</h3>
+    {% elif message == 'invalid_recaptcha' %}
+    <h3 style="color:yellow">Invalid reCAPTCHA</h3>
+    {% endif %}
+    <h1>Login</h1>
+    <form action="{% url 'girodm:' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{next}}" />
+        <input type="text" name="username" value="" placeholder="username">
+        <input type="password" name="password" value="" placeholder="password">
+        <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf"></div>
+        <button type="submit">login</button>
+    </form>
+    <a href="{% url 'girodm:register' %}">register</a> {% endcomment %}
     <script>
     </script>
 </body>
+
 </html>

@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <style>
     </style>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - GiroDM</title>
 </head>
-
 <body>
-    {% if message == 'failure' %}
-    <h3 style="color:red">That username and password do not match</h3>
-    {% elif message == 'loggedout' %}
-    <h3 style="color:blue">Successfully logged out</h3>
-    {% elif message == 'invalid_recaptcha' %}
-    <h3 style="color:yellow">Invalid reCAPTCHA</h3>
-    {% endif %}
-    <h1>Login</h1>
-    <form action="{% url 'users:login_user' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{next}}" />
-        <input type="text" name="username" value="" placeholder="username">
-        <input type="password" name="password" value="" placeholder="password">
-        <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf"></div>
-        <button type="submit">login</button>
+    <h1> login fool! </h1>
+    <form method="POST" action="">
+    {% csrf_token %}
+    {{form.username.label}}
+    {{form.username}}
+    {{form.first_name.label}}
+    {{form.first_name}}
+    {{form.email.label}}
+    {{form.email}}
+
+    {{form.password1.label}}
+    {{form.password1}}
+    {{form.password2.label}}
+    {{form.password2}}
+    
+    <input type="submit" name="Create User">
     </form>
-    <a href="{% url 'users:register' %}">register</a>
+
     <script>
     </script>
 </body>
-
 </html>
