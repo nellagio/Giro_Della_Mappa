@@ -11,5 +11,7 @@ urlpatterns = [
     path('register/', views.registerPage, name="register"),
     path('viewrides/', views.viewrides ,name="viewrides"),
     path('ride/<str:code>/', views.detail, name="detail"),
+    path('ride/<str:code>/edit/', views.editRidePage, name="editridepage"),
     path('create_a_ride/', views.createride, name="createride"),
+    path('ride/<str:code>/edit_a_ride/', views.editRide, name="editride"),
 ]

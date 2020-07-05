@@ -26,7 +26,7 @@ class Ride(models.Model):
     )
 
     def __str__(self):
-        return self.ride_name 
+        return self.ride_name
 
 # class Profile(models.Model):
 #     user = models.ForeignKey("", verbose_name=_(""), on_delete=models.CASCADE)

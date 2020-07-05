@@ -80,20 +80,25 @@ def createride(request):
     host_name = request.POST['hostName']
     pace = request.POST['pace']
     start_location = request.POST['startLocation']
+    start_date = request.POST['startDate']
     start_time = request.POST['startTime']
+    display_start_time = datetime.strptime(start_date + start_time, '%Y-%m-%d%H:%M')
+    print(display_start_time)
     end_location = request.POST['endLocation']
+    end_date = request.POST['endDate']
     end_time = request.POST['endTime']
+    display_end_time = datetime.strptime(end_date + end_time, '%Y-%m-%d%H:%M')
+    # print(f'\n\n\n startdate {start_time} \n {start_date} \n enddate {end_date} \n {end_time}')
     private = 'private' in request.POST
     comments = request.POST['comments']
-    print(pace)
     ride = Ride(
         created_by = created_by,
         ride_name = ride_name, 
         host_name = host_name, 
         start_location = start_location, 
-        start_time = start_time, 
+        start_time = display_start_time, 
         end_location = end_location, 
-        end_time = end_time, 
+        end_time = display_end_time, 
         private = private, 
         comments = comments,
         pace = pace, 
@@ -103,6 +108,7 @@ def createride(request):
 
     return HttpResponseRedirect(reverse('girodm:detail',kwargs={"code":code}))
 
+# def ride(request, code):
 def detail(request, code):
     # must reference a variable outside of the try/except first when created a local variable 
     ride = None
@@ -115,6 +121,49 @@ def detail(request, code):
     context = {'ride': ride}
     
     return render(request, 'girodm/ride.html',context)
+
+def editRidePage(request, code):
+    ride = Ride.objects.get(code=code)
+   
+    context = {'ride': ride}
+
+    return render(request, 'girodm/editride.html', context)
+
+def editRide(request, code):
+    
+    ride = Ride.objects.get(code=code)
+    created_by = request.user
+    ride_name = request.POST['rideName']
+    host_name = request.POST['hostName']
+    pace = request.POST['pace']
+    start_location = request.POST['startLocation']
+    start_date = request.POST['startDate']
+    start_time = request.POST['startTime']
+    display_start_time = datetime.strptime(start_date + start_time, '%Y-%m-%d%H:%M')
+    end_location = request.POST['endLocation']
+    end_date = request.POST['endDate']
+    end_time = request.POST['endTime']
+    display_end_time = datetime.strptime(end_date + end_time, '%Y-%m-%d%H:%M')
+    private = 'private' in request.POST
+    comments = request.POST['comments']
+    
+    ride.ride_name = ride_name 
+    ride.host_name = host_name
+    ride.start_location = start_location 
+    ride.start_time = display_start_time 
+    ride.end_location = end_location 
+    ride.end_time = display_end_time 
+    ride.private = private
+    ride.comments = comments
+    ride.pace = pace
+
+    ride.save()
+
+    return HttpResponseRedirect(reverse('girodm:detail',kwargs={"code":code}))
+    
+    ride.save()
+
+    return HttpResponseRedirect(reverse('girodm:detail',kwargs={"code":code}))
 
 def viewrides(request):
     rides = None

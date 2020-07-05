@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-color: rgba(255, 0, 0, 0.616);
+            text-align: center;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: green;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ride.ride_name}} - GiroDM
+    </title>
+</head>
+
+<body>
+    <div class="main">
+
+        <form class="form" action="{% url 'girodm:editride' ride.code %}" method="post">
+            {% csrf_token %}
+
+            <label>Ride name: <input type="text" name="rideName" value="{{ride.ride_name}}" placeholder="{{ride.ride_name}}" /></label>
+
+            <label>Host by: <input type="text" name="hostName" value="{{ request.user.first_name }}" placeholder="{{ request.user.first_name }}"></label>
+
+            <label>Pace:
+                <label class="radio"><input type="radio" name="pace" value="ep" checked> Social Ride </label>
+                <label class="radio"><input type="radio" name="pace" value="ff"> Family Friendly </label>
+                <label class="radio"> <input type="radio" name="pace" value="tp"> Training Ride </label>
+            </label>
+
+            <label>Starting location: <input type="text" name="startLocation" value="{{ ride.start_location }}" placeholder="{{ ride.start_location }}"></label>
+
+            <label>Ending location: <input type="text" name="endLocation" value="{{ ride.end_location }}n" placeholder="{{ ride.end_location }}"></label>
+
+            <label>Start date:<input type="date" name="startDate" value="{{ride.start_time}}" placeholder="Starting date"></label>
+
+            <label>Start time:<input type="time" name="startTime" value="{{ride.start_time}}" placeholder="Start time"></label>
+
+            <label>End date:<input type="date" name="endDate" value="{{ride.end_time}}" placeholder="Ending time"></label>
+
+            <label>End time:<input type="time" name="endTime" value="{{ride.end_time}}" placeholder="End time"></label>
+
+            <label>
+                <label class="radio"><input type="radio" name="private" value="public" checked>Public event</label>
+                <label class="radio"><input type="radio" name="private" value="private"> Private event</label>
+            </label>
+
+            <textarea name="comments" value="{{ride.comments}}" placeholder="{{ride.comments}}"></textarea>
+
+            <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf"></div>
+
+            <button type="submit">Host your ride</button>
+
+            <a href="{% url 'girodm:user' %}">Cancel</a>
+
+        </form>
+
+        <div class="links">
+            <a href="{% url 'girodm:user' %}">Back</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -45,8 +45,12 @@
         {% comment %} ride.objects.filter for loop to go over all rides and find the user's rides {% endcomment %}
         {% for ride in rides %}
         {% comment %} random code queries to find right url {% endcomment %}
-        <a href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a>
+        <a href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a> 
+
+        <a href="{% url "girodm:editridepage" ride.code %}">Edit</a>
+ 
         {% endfor %}
+        
         <div>
             <script>
             </script>
