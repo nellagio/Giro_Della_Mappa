@@ -1,20 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
+        body {
+            background-color: rgba(255, 0, 0, 0.616);
+            text-align: center;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: green;
+        }
     </style>
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{request.user}} - GiroDM</title>
 </head>
-<body>
-    <span>Hello, {{request.user}}  </span>
-    <a href="{% url 'girodm:host' %}">Host a ride</a>
 
-    {% comment %} ride.objects.filter for loop to go over all rides and find the user's rides {% endcomment %}
-    <span><a href="{% url 'girodm:logout'%}">Logout</a></span>
-    <script>
-    </script>
+<body>
+
+    <div class="main">
+        <h3>Hello, {{request.user}} </h3>
+
+        <a href="{% url 'girodm:host' %}">Host a ride</a>
+
+
+        <span><a href="{% url 'girodm:logout'%}">Logout</a></span>
+        <a href="{% url 'girodm:viewrides' %}">view currents rides</a>
+
+        {% comment %} ride.objects.filter for loop to go over all rides and find the user's rides {% endcomment %}
+        {% for ride in rides %}
+        {% comment %} random code queries to find right url {% endcomment %}
+        <a href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a>
+        {% endfor %}
+        <div>
+            <script>
+            </script>
 </body>
+
 </html>

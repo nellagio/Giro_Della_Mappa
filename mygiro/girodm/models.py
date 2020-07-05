@@ -9,7 +9,7 @@ RIDE_TYPE = (
 
 class Ride(models.Model):
 
-    user = models.ForeignKey(get_user_model(),null=True, blank=True, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(get_user_model(),null=True, blank=True, on_delete=models.CASCADE)
     ride_name = models.CharField(max_length=30)
     host_name = models.CharField(max_length=30)
     start_location = models.CharField(max_length=200)

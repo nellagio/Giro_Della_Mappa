@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+body{
+    background-color: rgba(255, 0, 0, 0.616);
+    text-align: center;
+    }
+    .main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    a:hover{
+        text-decoration: none;
+        color: green;
+    }
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ride.ride_name}} - GiroDM
@@ -15,10 +35,14 @@
     <p>Ending location: {{ride.end_location}}</p>
     <p>Estimated ending time: {{ride.end_time}}</p>
     <p>Is a private event: {{ride.private}}</p>
-    <p>Ride url to share: http://localhost:8000/ride/{{ride.code}}/</p>
+    <p>Ride url to share: <a href="http://localhost:8000/ride/{{ride.code}}/">http://localhost:8000/ride/{{ride.code}}/</a></p>
     <p>Additional information: {{ride.comments}}</p>
     
-    <span><a href="{% url 'girodm:user'%}">Back</a></span>
-    <span><a href="{% url 'girodm:logout'%}">Logout</a></span>
+    <div class="links">
+    <span><a href="{% url 'girodm:viewrides'%}">Back</a></span>
+    <a href="{% url 'girodm:register' %}">register</a>
+    <a href="{% url 'girodm:login' %}">login</a>
+    </div>
+    
 </body>
 </html>

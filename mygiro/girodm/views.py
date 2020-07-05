@@ -20,10 +20,11 @@ def index(request):
 
 @login_required(login_url='login')
 def user(request):
-    
-    context = {}
+    rides = Ride.objects.filter(created_by=request.user)
+   
+    context = {'rides': rides}
 
-    return render(request, 'girodm/user.html', context)
+    return render(request, 'girodm/user.html',context )
 
 def loginPage(request):
 
@@ -74,7 +75,7 @@ def createride(request):
     
     # acquiring data from from\
 
-    user = request.user
+    created_by = request.user
     ride_name = request.POST['rideName']
     host_name = request.POST['hostName']
     pace = request.POST['pace']
@@ -86,7 +87,7 @@ def createride(request):
     comments = request.POST['comments']
     print(pace)
     ride = Ride(
-        user = user,
+        created_by = created_by,
         ride_name = ride_name, 
         host_name = host_name, 
         start_location = start_location, 
@@ -125,4 +126,3 @@ def viewrides(request):
     context = {'rides': rides}
 
     return render(request, 'girodm/viewrides.html',context )
-

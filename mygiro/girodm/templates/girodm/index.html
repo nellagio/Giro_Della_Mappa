@@ -31,6 +31,7 @@
     <h3>Ride tracker</h3>
     <a href="{% url 'girodm:register' %}">register</a>
     <a href="{% url 'girodm:login' %}">login</a>
+    <a href="{% url 'girodm:viewrides' %}">view currents rides</a>
   </div>
 
   <div id="map">
@@ -38,6 +39,7 @@
   </div>
 
   <div class="footer">
+  <span><a href="{% url 'girodm:logout'%}">Logout</a></span>
     <a>Giro della Mappa</a>
     <p>&copy; 2020</p>
   </div>

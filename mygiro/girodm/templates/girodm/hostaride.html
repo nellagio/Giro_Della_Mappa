@@ -3,6 +3,24 @@
 
 <head>
     <style>
+    body{
+    background-color: rgba(255, 0, 0, 0.616);
+    text-align: center;
+    }
+    .main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    a:hover{
+        text-decoration: none;
+        color: green;
+    }
         .form {
             display: flex;
             flex-direction: column;
@@ -19,6 +37,7 @@
 <body>
 
     <div class="main">
+    <p>*note* creating a login will allow you to edit your ride later</p>
         <form class="form" action="{% url 'girodm:createride' %}" method="post">
             {% csrf_token %}
             <input type="text" name="rideName" value="" placeholder="Ride name" />
@@ -37,8 +56,10 @@
             </label>
             <input type="text" name="startLocation" value="" placeholder="Starting location">
             <input type="text" name="endLocation" value="" placeholder="Ending location">
-            <input type="date" name="startTime" value="" placeholder="Starting time">
-            <input type="date" name="endTime" value="" placeholder="Ending time">
+            <label>Start date:<input type="date" name="startDate" value="" placeholder="Starting date"></label>
+            <label>Start time:<input type="time" name="startTime" value="" placeholder="Start time"></label>
+            <label>End date:<input type="date" name="endDate" value="" placeholder="Ending time"></label>
+            <label>End time:<input type="time" name="endTime" value="" placeholder="End time"></label>
             <label class="radio">
                 <input type="radio" name="private" value="public" checked>
                 Public event
@@ -47,11 +68,12 @@
                 <input type="radio" name="private" value="private">
                 Private event
             </label>
-            <textarea name="comments" value="">Additional comments: "will be a hot one, bring plenty of water and snacks"
-            </textarea>
+            <textarea name="comments" value="" placeholder="Additional comments"></textarea>
             <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf
         "></div>
             <button type="submit">Host your ride</button>
+            <a href="{% url 'girodm:user' %}">Cancel</a>
+            
         </form>
     </div>
     <script>
