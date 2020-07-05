@@ -161,10 +161,6 @@ def editRide(request, code):
 
     return HttpResponseRedirect(reverse('girodm:detail',kwargs={"code":code}))
     
-    ride.save()
-
-    return HttpResponseRedirect(reverse('girodm:detail',kwargs={"code":code}))
-
 def viewrides(request):
     rides = None
     try:

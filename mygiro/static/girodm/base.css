@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <link rel="stylesheet" type="text/css" href="{% static 'girodm/index.css' %}">
+  <script src="{% static 'girodm/secrets.js' %}"> </script>
+
+  <style>
+    #map {
+      width: 100%;
+      height: 400px;
+      background-color: grey;
+    }
+  </style>
+
+  <meta charset="UTF-8">
+  <meta name="description" content="ride tracker">
+  <meta name="keywords" content="portland, oregon, ride, bicycle, bike, social, pedalpalooza">
+  <meta name="author" content="Nick Gallo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giro della Mappa</title>
+</head>
+
+<body>
+  <!-- recaptua -->
+  <div class="header">
+    <h2>Welcome to Giro della Mappa</h2>
+    <h3>Ride tracker</h3>
+    <a href="{% url 'girodm:register' %}">register</a>
+    <a href="{% url 'girodm:login' %}">login</a>
+    <a href="{% url 'girodm:viewrides' %}">view currents rides</a>
+  </div>
+
+  <div id="map">
+
+  </div>
+
+  <div class="footer">
+  <span><a href="{% url 'girodm:logout'%}">Logout</a></span>
+    <a>Giro della Mappa</a>
+    <p>&copy; 2020</p>
+  </div>
+  <script>
+    // Create the script tag, set the appropriate attributes
+    var script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBuCI5gynetjVyX4UHmGMkHcWNORuZxrJ4&callback=initMap';
+    script.defer = true;
+    script.async = true;
+
+    // Attach your callback function to the `window` object
+    window.initMap = function () {
+      navigator.geolocation.getCurrentPosition(position => {
+        let user_latitude = position.coords.latitude
+        let user_longitude = position.coords.longitude
+        let user_coords = {lat: user_latitude, lng: user_longitude}
+        console.log(user_coords)
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: user_coords,
+          zoom: 13
+        });
+
+      })
+    };
+
+    // Append the 'script' element to 'head'
+    document.head.appendChild(script);
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <link rel="stylesheet" type="text/css" href="{% static 'girodm/base.css' %}">
+
+  <meta charset="UTF-8">
+  <meta name="description" content="ride tracker">
+  <meta name="keywords" content="portland, oregon, ride, bicycle, bike, social, pedalpalooza">
+  <meta name="author" content="Nick Gallo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giro della Mappa</title>
+</head>
+
+<body>
+  <!-- recaptua -->
+  <div class="header">
+    <h2>Welcome to Giro della Mappa</h2>
+    <h3>Ride tracker</h3>
+    <a href="{% url 'girodm:register' %}">register</a>
+    <a href="{% url 'girodm:login' %}">login</a>
+    <a href="{% url 'girodm:viewrides' %}">view currents rides</a>
+  </div>
+
+  <div class="footer">
+  <span><a href="{% url 'girodm:logout'%}">Logout</a></span>
+    <a>Giro della Mappa</a>
+    <p>&copy; 2020</p>
+  </div>
+
+</body>
+
+</html>
