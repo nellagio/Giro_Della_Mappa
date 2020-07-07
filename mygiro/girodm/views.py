@@ -148,7 +148,7 @@ def editRide(request, code):
     end_date = request.POST['endDate']
     end_time = request.POST['endTime']
     display_end_time = datetime.strptime(end_date + end_time, '%Y-%m-%d%H:%M')
-    private = 'private' in request.POST
+    private = request.POST['']
     comments = request.POST['comments']
     
     ride.ride_name = ride_name 

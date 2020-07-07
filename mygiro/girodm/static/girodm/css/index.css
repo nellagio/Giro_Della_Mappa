@@ -16,3 +16,9 @@ body{
         text-decoration: none;
         color: green;
     }
+    #map {
+        width: 350px;
+        height: 400px;
+        background-color: grey;
+        border-radius: 15px;
+    }
