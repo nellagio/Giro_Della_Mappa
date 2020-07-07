@@ -1,50 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <style>
-    body{
-    background-color: rgba(255, 0, 0, 0.616);
-    text-align: center;
-    }
-    .main{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    a{
-        text-decoration: none;
-        color: white;
-    }
-    a:hover{
-        text-decoration: none;
-        color: green;
-    }
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Rides - GiroDM</title>
-</head>
-<body>
-    <div class="main">
-    {% if request.user.is_authenticated %}
-    <h2>Hello, {{request.user.first_name}}</h2>
-    <a href="{% url 'girodm:user' %}">return to home</a>
-    {% endif %}
-    {% if not request.user.is_authenticated %}
-    <a href="{% url 'girodm:register' %}">register</a>
-    <a href="{% url 'girodm:login' %}">login</a>
-    {% endif %}
+{% extends 'girodm/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'girodm/css/viewrides.css' %}">
+<script src="{% static 'girodm/js/viewrides.js' %}"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+  type="text/javascript"></script>
+{% endblock %}
+{% block title %}
+ View Rides - GiroDM
+{% endblock %}
+{% block content %}
     <h1>current rides:</h1>
      {% for ride in rides%}
      {% comment %} random code queries to find right url {% endcomment %}
         <a href="{% url "girodm:detail" ride.code %}" >{{ride.ride_name}}</a>
     {% endfor %}
     </div>
-    <div class="links">
-    <a href="{% url 'girodm:viewrides' %}">view currents rides</a>
-    </div>
-    <script>
-    </script>
-</body>
-</html>
+{% endblock %}
+
+    

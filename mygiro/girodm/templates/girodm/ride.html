@@ -1,49 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<style>
-body{
-    background-color: rgba(255, 0, 0, 0.616);
-    text-align: center;
-    }
-    .main{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    a{
-        text-decoration: none;
-        color: white;
-    }
-    a:hover{
-        text-decoration: none;
-        color: green;
-    }
-</style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ride.ride_name}} - GiroDM
-    </title>
-</head>
-<body>
-    <h1>{{ride.ride_name}}</h1>
-    <p>Hosted by: {{ride.host_name}}</p>
-    <p>Pace: {{ride.get_ride_pace_display}}</p>
-    <p>Type: {{ride.get_ride_type_display}}</p>
-    <p>Start location: {{ride.start_location}}</p>
-    <p>Start time: {{ride.start_time}}</p>
-    <p>Ending location: {{ride.end_location}}</p>
-    <p>Estimated ending time: {{ride.end_time}}</p>
-    <p>Is a private event: {{ride.private}}</p>
-    <p>Ride url to share: <a href="http://localhost:8000/ride/{{ride.code}}/">http://localhost:8000/ride/{{ride.code}}/</a></p>
-    <p>Additional information: {{ride.comments}}</p>
-    
-    <div class="links">
-    <span><a href="{% url 'girodm:viewrides'%}">Back</a></span>
-    <a href="{% url 'girodm:register' %}">register</a>
-    <a href="{% url 'girodm:login' %}">login</a>
-    </div>
-    
-</body>
-</html>
+{% extends 'girodm/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'girodm/css/ride.css' %}">
+<script src="{% static 'girodm/js/ride.js' %}"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+  type="text/javascript"></script>
+{% endblock %}
+{% block title %}
+{{ride.ride_name}} - GiroDM
+{% endblock %}
+{% block content %}
+<div class="ride_div">
+  <h1>{{ride.ride_name}}</h1>
+  <p>Hosted by: {{ride.host_name}}</p>
+  <p>Pace: {{ride.get_ride_pace_display}}</p>
+  <p>Type: {{ride.get_ride_type_display}}</p>
+  <p>Start location: {{ride.start_location}}</p>
+  <p>Start time: {{ride.start_time}}</p>
+  <p>Ending location: {{ride.end_location}}</p>
+  <p>Estimated ending time: {{ride.end_time}}</p>
+  <p>Is a private event: {{ride.private}}</p>
+  <p>Share: <a href="http://localhost:8000/ride/{{ride.code}}/">http://localhost:8000/ride/{{ride.code}}/</a></p>
+  <p>Additional information: {{ride.comments}}</p>
+</div>
+
+<div id="map">
+
+</div>
+
+{% endblock %}

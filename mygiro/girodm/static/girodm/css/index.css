@@ -1,22 +1,4 @@
-body{
-    background-color: rgba(255, 0, 0, 0.616);
-    text-align: center;
-    }
-    .main{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    a{
-        text-decoration: none;
-        color: white;
-    }
-    a:hover{
-        text-decoration: none;
-        color: green;
-    }
-    #map {
+#map {
         width: 350px;
         height: 400px;
         background-color: grey;

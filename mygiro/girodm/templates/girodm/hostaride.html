@@ -1,47 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'girodm/base.html' %}
+{% load static %}
 
-<head>
-    <style>
-    body{
-    background-color: rgba(255, 0, 0, 0.616);
-    text-align: center;
-    }
-    .main{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    a{
-        text-decoration: none;
-        color: white;
-    }
-    a:hover{
-        text-decoration: none;
-        color: green;
-    }
-        .form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Host a Ride - GiroDM</title>
-</head>
-
-<body>
-
-    <div class="main">
-        <h3>*Note: creating a login will allow you to edit your ride later*</h3>
+{% block head %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<link rel="stylesheet" type="text/css" href="{% static 'girodm/css/hostaride.css' %}">
+<script src="{% static 'girodm/js/hostaride.js' %}"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+  type="text/javascript"></script>
+{% endblock %}
+{% block title %}
+ Host a Ride - GiroDM
+{% endblock %}
+{% block content %}
+<h3>*Note: creating a login will allow you to edit your ride later*</h3>
         
         <form class="form" action="{% url 'girodm:createride' %}" method="post">
             {% csrf_token %}
-
+           
             <label>Ride name: <input type="text" name="rideName" value="" placeholder="Ride name" /></label>
 
             <label>Host by: <input type="text" name="hostName" value="{{ request.user.first_name }}" placeholder="{{ request.user.first_name }}"></label>
@@ -58,12 +34,14 @@
                 <label class="radio"><input type="radio" name="pace" value="md" checked> 9-12 mph </label>
                 <label class="radio"> <input type="radio" name="pace" value="fs"> 13-17 mph </label>
                 <label class="radio"><input type="radio" name="pace" value="tf"> 18+ mph </label>
-
             </label>
 
-            <label>Starting location: <input type="text" name="startLocation" value="" placeholder="Starting location"></label>
-
-            <label>Ending location: <input type="text" name="endLocation" value="" placeholder="Ending location"></label>
+            <div id="locationField">
+                <input type="text" id="autocompleteStart" name="startLocation" value="" placeholder="Starting location">
+            <div>
+            <div id="locationField">
+                <input type="text" id="autocompleteEnd" name="endLocation" value="" placeholder="Ending location">
+            </div>
 
             <label>Start date:<input type="date" name="startDate" value="" placeholder="Starting date"></label>
             
@@ -87,9 +65,7 @@
             <a href="{% url 'girodm:user' %}">Cancel</a>
             
         </form>
-    </div>
-    <script>
-    </script>
-</body>
+        <div id="map">
 
-</html>
+        </div>
+{% endblock %}

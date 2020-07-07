@@ -1,58 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'girodm/base.html' %}
+{% load static %}
 
-<head>
-    <style>
-        body {
-            background-color: rgba(255, 0, 0, 0.616);
-            text-align: center;
-        }
-
-        .main {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        a {
-            text-decoration: none;
-            color: white;
-        }
-
-        a:hover {
-            text-decoration: none;
-            color: green;
-        }
-    </style>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{request.user}} - GiroDM</title>
-</head>
-
-<body>
-
-    <div class="main">
-        <h3>Hello, {{request.user.first_name}} </h3>
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'girodm/css/user.css' %}">
+<script src="{% static 'girodm/js/user.js' %}"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+  type="text/javascript"></script>
+{% endblock %}
+{% block title %}
+ {{request.user}} - GiroDM
+{% endblock %}
+{% block content %}
+<h3>Hello, {{request.user.first_name}} </h3>
 
         <a href="{% url 'girodm:host' %}">Host a ride</a>
-
-
-        <span><a href="{% url 'girodm:logout'%}">Logout</a></span>
         <a href="{% url 'girodm:viewrides' %}">view currents rides</a>
 
-        {% comment %} ride.objects.filter for loop to go over all rides and find the user's rides {% endcomment %}
+        <h3>You're the host of these rides:</h3>
         {% for ride in rides %}
-        {% comment %} random code queries to find right url {% endcomment %}
         <a href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a> 
         <a href="{% url "girodm:editridepage" ride.code %}">Edit</a>
         <br/>
         {% endfor %}
-        
-        <div>
-            <script>
-            </script>
-</body>
+{% endblock %}
 
-</html>

@@ -1,40 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'girodm/base.html' %}
+{% load static %}
 
-<head>
-    <style>
-        body {
-            background-color: rgba(255, 0, 0, 0.616);
-            text-align: center;
-        }
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'girodm/css/editride.css' %}">
+<script src="{% static 'girodm/js/editride.js' %}"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+  type="text/javascript"></script>
+{% endblock %}
 
-        .form {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+{% block title %}
+ {{ride.ride_name}} - GiroDM
+{% endblock %}
 
-        a {
-            text-decoration: none;
-            color: white;
-        }
-
-        a:hover {
-            text-decoration: none;
-            color: green;
-        }
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ride.ride_name}} - GiroDM
-    </title>
-</head>
-
-<body>
-    <div class="main">
-
-        <form class="form" action="{% url 'girodm:editride' ride.code %}" method="post">
+{% block content %}
+<form class="form" action="{% url 'girodm:editride' ride.code %}" method="post">
             {% csrf_token %}
 
             <label>Ride name: <input type="text" name="rideName" value="{{ride.ride_name}}" placeholder="{{ride.ride_name}}" /></label>
@@ -73,11 +53,5 @@
             <a href="{% url 'girodm:user' %}">Cancel</a>
 
         </form>
-
-        <div class="links">
-            <a href="{% url 'girodm:user' %}">Back</a>
-        </div>
-    </div>
-</body>
-
-</html>
+        
+{% endblock %}

@@ -62,7 +62,7 @@ def registerPage(request):
     return render(request, 'girodm/register.html', context)
 
 def host(request):
-    context = {}
+    context = {'google_maps_api_key': secrets.google_maps_api_key}
     return render (request, 'girodm/hostaride.html', context)
 
 def createride(request):

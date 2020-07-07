@@ -1,41 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+{% extends 'girodm/base.html' %}
 {% load static %}
-    <style>
-    body{
-    background-color: rgba(255, 0, 0, 0.616);
-    text-align: center;
-    }
-    .main{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    a{
-        text-decoration: none;
-        color: white;
-    }
-    a:hover{
-        text-decoration: none;
-        color: green;
-    }
-        .form_input{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - GiroDM</title>
-</head>
 
-<body>
-    <div class="main">
-        <h1> Register here </h1>
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'girodm/css/register.css' %}">
+<script src="{% static 'girodm/js/register.js' %}"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+  type="text/javascript"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
+{% block title %}
+ Register - GiroDM
+{% endblock %}
+{% block content %}
+<h1> Register here </h1>
         <form method="POST" action="">
             {% csrf_token %}
 
@@ -58,9 +36,4 @@
             <p>Already have a login? <a href="{% url 'girodm:login' %}">Login here</a>
             {{form.errors}}
         </form>
-    </div>
-    <script>
-    </script>
-</body>
-
-</html>
+{% endblock %}

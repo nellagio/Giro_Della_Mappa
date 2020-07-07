@@ -1,35 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'girodm/base.html' %}
+{% load static %}
 
-<head>
-    <style>
-    body{
-    background-color: rgba(255, 0, 0, 0.616);
-    text-align: center;
-    }
-    .main{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    a{
-        text-decoration: none;
-        color: white;
-    }
-    a:hover{
-        text-decoration: none;
-        color: green;
-    }
-    </style>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - GiroDM</title>
-</head>
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'girodm/css/login.css' %}">
+<script src="{% static 'girodm/js/login.js' %}"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+  type="text/javascript"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
 
-<body>
-    <h1>Login</h1>
+{% block title %}
+ Login - GiroDM
+{% endblock %}
+
+{% block content %}
+
+<h1>Login</h1>
     {% for message in messages%}
         <p>{{message}}</p>
     {% endfor %}
@@ -38,10 +25,8 @@
         <input type="text" name="username" value="" placeholder="username">
         <input type="password" name="password" value="" placeholder="password">
     
-        <button type="submit">login</button>
+        <button type="submit">Login</button>
     </form>
-    <a href="{% url 'girodm:register' %}">register</a>
-    </script>
-</body>
-
-</html>
+    <button href="{% url 'girodm:register' %}">Register</button>
+</div>
+{% endblock %}
