@@ -11,11 +11,11 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-
+from . import secrets
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    context = {}
+    context = {'google_maps_api_key': secrets.google_maps_api_key}
     return render(request,'girodm/index.html', context)
 
 @login_required(login_url='login')
@@ -78,7 +78,8 @@ def createride(request):
     created_by = request.user
     ride_name = request.POST['rideName']
     host_name = request.POST['hostName']
-    pace = request.POST['pace']
+    ride_pace = request.POST['pace']
+    ride_type = request.POST['type']
     start_location = request.POST['startLocation']
     start_date = request.POST['startDate']
     start_time = request.POST['startTime']
@@ -89,7 +90,8 @@ def createride(request):
     end_time = request.POST['endTime']
     display_end_time = datetime.strptime(end_date + end_time, '%Y-%m-%d%H:%M')
     # print(f'\n\n\n startdate {start_time} \n {start_date} \n enddate {end_date} \n {end_time}')
-    private = 'private' in request.POST
+    private = request.POST['privacy']
+    print(private)
     comments = request.POST['comments']
     ride = Ride(
         created_by = created_by,
@@ -101,7 +103,8 @@ def createride(request):
         end_time = display_end_time, 
         private = private, 
         comments = comments,
-        pace = pace, 
+        ride_type = ride_type,
+        ride_pace = ride_pace, 
         code = code)
 
     ride.save()
@@ -135,7 +138,8 @@ def editRide(request, code):
     created_by = request.user
     ride_name = request.POST['rideName']
     host_name = request.POST['hostName']
-    pace = request.POST['pace']
+    ride_pace = request.POST['pace']
+    ride_type = request.POST['type']
     start_location = request.POST['startLocation']
     start_date = request.POST['startDate']
     start_time = request.POST['startTime']
@@ -155,7 +159,8 @@ def editRide(request, code):
     ride.end_time = display_end_time 
     ride.private = private
     ride.comments = comments
-    ride.pace = pace
+    ride.ride_pace = ride_pace
+    ride.ride_type = ride_type
 
     ride.save()
 
@@ -164,7 +169,7 @@ def editRide(request, code):
 def viewrides(request):
     rides = None
     try:
-        rides = Ride.objects.all()
+        rides = Ride.objects.filter(private=False)
     except Ride.DoesNotExist:
         raise Http404("Ride does not exist")
 

@@ -1,10 +1,19 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
+
 RIDE_TYPE = (
     ("ff","Family Friendly"),
-    ("ep","Social (18/21+)"),
-    ("tp","Training Pace"),
+    ("ep","Social (18/21+) Ride"),
+    ("tp","Training Ride"),
+    ("sp", "Special Event"),
+)
+
+RIDE_PACE = (
+    ("sl", "3-8 mph"),
+    ("md", "9-12 mph"),
+    ("fs", "13-17 mph"),
+    ("tf", "18+ mph"),
 )
 
 class Ride(models.Model):
@@ -14,15 +23,24 @@ class Ride(models.Model):
     host_name = models.CharField(max_length=30)
     start_location = models.CharField(max_length=200)
     start_time = models.DateTimeField()
+    start_long = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+    start_lat  = models.DecimalField(max_digits=9, decimal_places=6,null=True)
     end_location = models.CharField(max_length=200)
     end_time = models.DateTimeField()
+    end_long = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+    end_lat  = models.DecimalField(max_digits=9, decimal_places=6,null=True)
     private = models.BooleanField(default=False)
     code = models.CharField(max_length=10) 
     comments = models.TextField()
-    pace = models.CharField(
+    ride_type = models.CharField(
         max_length=200,
         choices=RIDE_TYPE,
         default = 'ff'
+    )
+    ride_pace = models.CharField(
+        max_length=200,
+        choices=RIDE_PACE,
+        default = 'md'
     )
 
     def __str__(self):

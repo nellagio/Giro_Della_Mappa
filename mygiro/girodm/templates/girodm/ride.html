@@ -29,7 +29,8 @@ body{
 <body>
     <h1>{{ride.ride_name}}</h1>
     <p>Hosted by: {{ride.host_name}}</p>
-    <p>Pace: {{ride.get_pace_display}}</p>
+    <p>Pace: {{ride.get_ride_pace_display}}</p>
+    <p>Type: {{ride.get_ride_type_display}}</p>
     <p>Start location: {{ride.start_location}}</p>
     <p>Start time: {{ride.start_time}}</p>
     <p>Ending location: {{ride.end_location}}</p>

@@ -34,7 +34,7 @@
 <body>
 
     <div class="main">
-        <h3>Hello, {{request.user}} </h3>
+        <h3>Hello, {{request.user.first_name}} </h3>
 
         <a href="{% url 'girodm:host' %}">Host a ride</a>
 
@@ -46,9 +46,8 @@
         {% for ride in rides %}
         {% comment %} random code queries to find right url {% endcomment %}
         <a href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a> 
-
         <a href="{% url "girodm:editridepage" ride.code %}">Edit</a>
- 
+        <br/>
         {% endfor %}
         
         <div>

@@ -27,6 +27,14 @@
 </head>
 <body>
     <div class="main">
+    {% if request.user.is_authenticated %}
+    <h2>Hello, {{request.user.first_name}}</h2>
+    <a href="{% url 'girodm:user' %}">return to home</a>
+    {% endif %}
+    {% if not request.user.is_authenticated %}
+    <a href="{% url 'girodm:register' %}">register</a>
+    <a href="{% url 'girodm:login' %}">login</a>
+    {% endif %}
     <h1>current rides:</h1>
      {% for ride in rides%}
      {% comment %} random code queries to find right url {% endcomment %}
@@ -34,8 +42,6 @@
     {% endfor %}
     </div>
     <div class="links">
-    <a href="{% url 'girodm:register' %}">register</a>
-    <a href="{% url 'girodm:login' %}">login</a>
     <a href="{% url 'girodm:viewrides' %}">view currents rides</a>
     </div>
     <script>
