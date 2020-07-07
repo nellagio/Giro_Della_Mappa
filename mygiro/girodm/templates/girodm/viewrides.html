@@ -12,12 +12,20 @@
  View Rides - GiroDM
 {% endblock %}
 {% block content %}
+
+    {% if request.user.is_authenticated %}>
+    <a href="{% url "girodm:host" %}">Host a Ride</a>
+    {% endif %}
+    {% if not request.user.is_authenticated %}
+    <a href="{% url "girodm:register" %}">Register to host a Ride</a>
+    {% endif %}
+
     <h1>current rides:</h1>
+    <div id="map">
+    </div>
      {% for ride in rides%}
      {% comment %} random code queries to find right url {% endcomment %}
         <a href="{% url "girodm:detail" ride.code %}" >{{ride.ride_name}}</a>
     {% endfor %}
     </div>
 {% endblock %}
-
-    

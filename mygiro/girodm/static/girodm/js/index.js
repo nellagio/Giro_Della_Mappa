@@ -10,6 +10,11 @@ window.initMap = function () {
         });
         let bikeLayer = new google.maps.BicyclingLayer();
         bikeLayer.setMap(map);
+        var user_coords_marker = new google.maps.Marker({
+            position: user_coords,
+            map: map,
+            title: 'Your location!'
+        });
 
         var input = document.getElementById('autocomplete');
         var autocomplete = new google.maps.places.Autocomplete(input);
@@ -40,29 +45,18 @@ window.initMap = function () {
                     (place.address_components[1] && place.address_components[1].short_name || ''),
                     (place.address_components[2] && place.address_components[2].short_name || '')
                 ].join(' ')
-                console.log(place)
-                console.log(place.geometry.location.lat())
+                var end_lat = place.geometry.location.lat()
+                var end_lng = place.geometry.location.lng()
+                var end_coords = { lat: end_lat, lng: end_lng }
+                console.log(end_coords)
+
+                var start_coords_marker = new google.maps.Marker({
+                    position: end_coords,
+                    map: map,
+                    title: 'Where a ride is'
+                });
             }
         })
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
 
-        function showPosition(position) {
-
-            let lat = position.coords.latitude;
-            let long = position.coords.longitude;
-            $("input[name='lat']").val(lat);
-            $("input[name='lat']").val(long);
-            let url_str = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&key=yourkey'
-            $.getJSON(url_str, function (data) {
-                console.log(data);
-                //here you get the location data, make more fields like street address, city in db and pass it to inputs and submit the form to save it.
-            });
-        }
     })
 }

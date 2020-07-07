@@ -6,68 +6,107 @@ window.initMap = function () {
         console.log(user_coords)
         map = new google.maps.Map(document.getElementById('map'), {
             center: user_coords,
-            zoom: 13
+            zoom: 12
         });
         let bikeLayer = new google.maps.BicyclingLayer();
         bikeLayer.setMap(map);
-
-        var input = document.getElementById('autocompleteEnd');
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.setFields(
-            ['address_components', 'geometry', 'icon', 'name']);
-
-        var input = document.getElementById('autocompleteStart');
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.setFields(
-            ['address_components', 'geometry', 'icon', 'name']);
-
-        autocomplete.addListener('place_changed', function () {
-            var place = autocomplete.getPlace();
-            if (!place.geometry) {
-                // User entered the name of a Place that was not suggested and
-                // pressed the Enter key, or the Place Details request failed.
-                window.alert("No details available for input: '" + place.name + "'");
+        var user_coords_marker = new google.maps.Marker({
+            position: user_coords,
+            map: map,
+            title: 'Your location!'
+        });
+        // start coords
+        var start_input = document.getElementById('autocompleteStart');
+        var start_autocomplete = new google.maps.places.Autocomplete(start_input);
+        start_autocomplete.setFields(['address_components', 'geometry', 'icon', 'name']);
+        start_autocomplete.addListener('place_changed', function () {
+            var start_place = start_autocomplete.getPlace();
+            if (!start_place.geometry) {
+                // User entered the name of a start_place that was not suggested and
+                // pressed the Enter key, or the start_place Details request failed.
+                window.alert("No details available for input: '" + start_place.name + "'");
                 return;
             }
 
-            // If the place has a geometry, then present it on a map.
-            if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
+            // If the start_place has a geometry, then present it on a map.
+            if (start_place.geometry.viewport) {
+                map.fitBounds(start_place.geometry.viewport);
             } else {
-                map.setCenter(place.geometry.location);
+                map.setCenter(start_place.geometry.location);
                 map.setZoom(17);  // Why 17? Because it looks good.
             }
 
             var address = '';
-            if (place.address_components) {
+            if (start_place.address_components) {
                 address = [
-                    (place.address_components[0] && place.address_components[0].short_name || ''),
-                    (place.address_components[1] && place.address_components[1].short_name || ''),
-                    (place.address_components[2] && place.address_components[2].short_name || '')
+                    (start_place.address_components[0] && start_place.address_components[0].short_name || ''),
+                    (start_place.address_components[1] && start_place.address_components[1].short_name || ''),
+                    (start_place.address_components[2] && start_place.address_components[2].short_name || '')
                 ].join(' ')
-                console.log(place)
-                console.log(place.geometry.location.lat())
+                // console.log(start_place)
+                var start_lat = start_place.geometry.location.lat()
+                var start_lng = start_place.geometry.location.lng()
+                var start_coords = { lat: start_lat, lng: start_lng }
+                console.log(start_coords)
+                console.log("start")
+                var start_coords_marker = new google.maps.Marker({
+                    position: start_coords,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    map: map,
+                    title: 'Where a ride starts'
+                });
             }
         })
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
+
+        // end coords
+
+        var end_input = document.getElementById('autocompleteEnd');
+        var end_autocomplete = new google.maps.places.Autocomplete(end_input);
+        end_autocomplete.setFields(['address_components', 'geometry', 'icon', 'name']);
+
+        end_autocomplete.addListener('place_changed', function () {
+            var end_place = end_autocomplete.getPlace();
+            if (!end_place.geometry) {
+                // User entered the name of a end_place that was not suggested and
+                // pressed the Enter key, or the end_place Details request failed.
+                window.alert("No details available for input: '" + end_place.name + "'");
+                return;
             }
-        }
 
-        function showPosition(position) {
+            // If the end_place has a geometry, then present it on a map.
+            if (end_place.geometry.viewport) {
+                map.fitBounds(end_place.geometry.viewport);
+            } else {
+                map.setCenter(end_place.geometry.location);
+                map.setZoom(17);  // Why 17? Because it looks good.
+            }
 
-            let lat = position.coords.latitude;
-            let long = position.coords.longitude;
-            $("input[name='lat']").val(lat);
-            $("input[name='lat']").val(long);
-            let url_str = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&key=yourkey'
-            $.getJSON(url_str, function (data) {
-                console.log(data);
-                //here you get the location data, make more fields like street address, city in db and pass it to inputs and submit the form to save it.
-            });
-        }
+            var address = '';
+            if (end_place.address_components) {
+                address = [
+                    (end_place.address_components[0] && end_place.address_components[0].short_name || ''),
+                    (end_place.address_components[1] && end_place.address_components[1].short_name || ''),
+                    (end_place.address_components[2] && end_place.address_components[2].short_name || '')
+                ].join(' ')
+                // console.log(end_place)
+                var end_lat = end_place.geometry.location.lat()
+                var end_lng = end_place.geometry.location.lng()
+                var end_coords = { lat: end_lat, lng: end_lng }
+                console.log(end_coords)
+                console.log("end")
+                var end_coords_marker = new google.maps.Marker({
+                    position: end_coords,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    map: map,
+                    title: 'Where the ride ends'
+                });
+            }
+        })
+
     })
 }
+$(document).on("keydown", "form", function(event) { 
+    return event.key != "Enter";
+});

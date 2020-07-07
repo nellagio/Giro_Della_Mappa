@@ -1,8 +1,11 @@
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 3px;
-    padding: 10px;
+form {
+    padding-top: 10px; 
+    margin: 0 auto; 
+    width:400px;
+}
+#map {
+    width: 350px;
+    height: 400px;
+    background-color: grey;
+    border-radius: 15px;
 }

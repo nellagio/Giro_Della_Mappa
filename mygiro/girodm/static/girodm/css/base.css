@@ -71,6 +71,6 @@ a:hover{
 
 @media (min-width: 1200px) {
     body{
-        background-color: white
+        background-color: rgba(245, 3, 3, 0.219)
     }   
 }

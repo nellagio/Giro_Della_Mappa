@@ -84,14 +84,12 @@ def createride(request):
     start_date = request.POST['startDate']
     start_time = request.POST['startTime']
     display_start_time = datetime.strptime(start_date + start_time, '%Y-%m-%d%H:%M')
-    print(display_start_time)
     end_location = request.POST['endLocation']
     end_date = request.POST['endDate']
     end_time = request.POST['endTime']
     display_end_time = datetime.strptime(end_date + end_time, '%Y-%m-%d%H:%M')
     # print(f'\n\n\n startdate {start_time} \n {start_date} \n enddate {end_date} \n {end_time}')
     private = request.POST['privacy']
-    print(private)
     comments = request.POST['comments']
     ride = Ride(
         created_by = created_by,
