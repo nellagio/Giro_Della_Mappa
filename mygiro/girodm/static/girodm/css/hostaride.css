@@ -1,11 +1,28 @@
 form {
     padding-top: 10px; 
     margin: 0 auto; 
-    width:400px;
+    width:350px;
 }
+
 #map {
     width: 350px;
     height: 400px;
     background-color: grey;
     border-radius: 15px;
+}
+.radio{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 1200px) {
+   
+    .main{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center; 
+    }
 }

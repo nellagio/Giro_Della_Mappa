@@ -41,11 +41,14 @@ Host a Ride - GiroDM
         <label class="radio"> <input type="radio" name="pace" value="fs"> 13-17 mph </label>
         <label class="radio"><input type="radio" name="pace" value="tf"> 18+ mph </label>
     </label>
-
+    
     <div id="locationField">
         <input type="text" id="autocompleteStart" name="startLocation" value="" placeholder="Starting location">
-
+        <input type="hidden" id="autoCompleteLatStart" name="startLat" value="">
+        <input type="hidden" id="autoCompleteLngStart" name="startLng" value="">
         <input type="text" id="autocompleteEnd" name="endLocation" value="" placeholder="Ending location">
+        <input type="hidden" id="autoCompleteLatEnd" name="endLat" value="">
+        <input type="hidden" id="autoCompleteLngEnd" name="endLng" value="">
     </div>
 
             <label>Start date:<input type="date" name="startDate" value="" placeholder="Starting date"></label>

@@ -1,3 +1,5 @@
+
+
 window.initMap = function () {
     navigator.geolocation.getCurrentPosition(position => {
         let user_latitude = position.coords.latitude

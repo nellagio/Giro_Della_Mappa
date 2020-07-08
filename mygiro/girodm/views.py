@@ -81,10 +81,14 @@ def createride(request):
     ride_pace = request.POST['pace']
     ride_type = request.POST['type']
     start_location = request.POST['startLocation']
+    start_lat = request.POST['']
+    start_lng = request.POST['']
     start_date = request.POST['startDate']
     start_time = request.POST['startTime']
     display_start_time = datetime.strptime(start_date + start_time, '%Y-%m-%d%H:%M')
     end_location = request.POST['endLocation']
+    end_lat = request.POST['']
+    end_lng = request.POST['']
     end_date = request.POST['endDate']
     end_time = request.POST['endTime']
     display_end_time = datetime.strptime(end_date + end_time, '%Y-%m-%d%H:%M')
