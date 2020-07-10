@@ -1,4 +1,10 @@
 window.initMap = function () {
+
+    let autoCompleteLatStart = document.querySelector('#autoCompleteLatStart')
+    let autoCompleteLngStart = document.querySelector('#autoCompleteLngStart')
+    let autoCompleteLatEnd = document.querySelector('#autoCompleteLatEnd')
+    let autoCompleteLngEnd = document.querySelector('#autoCompleteLngEnd')
+
     navigator.geolocation.getCurrentPosition(position => {
         let user_latitude = position.coords.latitude
         let user_longitude = position.coords.longitude
@@ -46,6 +52,8 @@ window.initMap = function () {
                 // console.log(start_place)
                 var start_lat = start_place.geometry.location.lat()
                 var start_lng = start_place.geometry.location.lng()
+                autoCompleteLatStart.value = start_lat
+                autoCompleteLngStart.value = start_lng
                 var start_coords = { lat: start_lat, lng: start_lng }
                 console.log(start_coords)
                 console.log("start")
@@ -54,8 +62,9 @@ window.initMap = function () {
                     draggable: true,
                     animation: google.maps.Animation.DROP,
                     map: map,
-                    title: 'Where a ride starts'
+                    title: 'Where a ride starts',
                 });
+                
             }
         })
 
@@ -93,6 +102,8 @@ window.initMap = function () {
                 var end_lat = end_place.geometry.location.lat()
                 var end_lng = end_place.geometry.location.lng()
                 var end_coords = { lat: end_lat, lng: end_lng }
+                autoCompleteLatEnd.value = end_lat
+                autoCompleteLngEnd.value = end_lng
                 console.log(end_coords)
                 console.log("end")
                 var end_coords_marker = new google.maps.Marker({
@@ -100,7 +111,7 @@ window.initMap = function () {
                     draggable: true,
                     animation: google.maps.Animation.DROP,
                     map: map,
-                    title: 'Where the ride ends'
+                    title: 'Where the ride ends',
                 });
             }
         })

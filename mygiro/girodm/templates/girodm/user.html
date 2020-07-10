@@ -21,6 +21,7 @@
         {% for ride in rides %}
         <a href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a> 
         <a href="{% url "girodm:editridepage" ride.code %}">Edit</a>
+        <a href="{% url "girodm:deleteride" ride.code %}">Delete</a>
         <br/>
         {% endfor %}
 {% endblock %}

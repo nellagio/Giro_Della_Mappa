@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, Http404, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import string
 import random
 from datetime import datetime
@@ -66,7 +66,7 @@ def host(request):
     return render (request, 'girodm/hostaride.html', context)
 
 def createride(request):
-    # creates a random string, 10 chars long to use as the ride URL
+       # creates a random string, 10 chars long to use as the ride URL
     letters_to_make_string = string.ascii_letters+string.digits
     random_string = ""
     for i in range(10):
@@ -81,27 +81,30 @@ def createride(request):
     ride_pace = request.POST['pace']
     ride_type = request.POST['type']
     start_location = request.POST['startLocation']
-    start_lat = request.POST['']
-    start_lng = request.POST['']
+    start_lat = request.POST['startLat']
+    start_lng = request.POST['startLng']
     start_date = request.POST['startDate']
     start_time = request.POST['startTime']
     display_start_time = datetime.strptime(start_date + start_time, '%Y-%m-%d%H:%M')
     end_location = request.POST['endLocation']
-    end_lat = request.POST['']
-    end_lng = request.POST['']
+    end_lat = request.POST['endLat']
+    end_lng = request.POST['endLng']
     end_date = request.POST['endDate']
     end_time = request.POST['endTime']
     display_end_time = datetime.strptime(end_date + end_time, '%Y-%m-%d%H:%M')
-    # print(f'\n\n\n startdate {start_time} \n {start_date} \n enddate {end_date} \n {end_time}')
     private = request.POST['privacy']
     comments = request.POST['comments']
     ride = Ride(
         created_by = created_by,
         ride_name = ride_name, 
         host_name = host_name, 
-        start_location = start_location, 
+        start_location = start_location,
+        start_lat = start_lat,
+        start_long = start_lng, 
         start_time = display_start_time, 
-        end_location = end_location, 
+        end_location = end_location,
+        end_lat = end_lat,
+        end_long = end_lng,
         end_time = display_end_time, 
         private = private, 
         comments = comments,
@@ -128,10 +131,11 @@ def detail(request, code):
     return render(request, 'girodm/ride.html',context)
 
 def editRidePage(request, code):
-    ride = Ride.objects.get(code=code)
-   
-    context = {'ride': ride}
 
+    ride = Ride.objects.get(code=code)
+
+    context = {'ride': ride, 'google_maps_api_key': secrets.google_maps_api_key}
+    
     return render(request, 'girodm/editride.html', context)
 
 def editRide(request, code):
@@ -142,27 +146,45 @@ def editRide(request, code):
     host_name = request.POST['hostName']
     ride_pace = request.POST['pace']
     ride_type = request.POST['type']
+
     start_location = request.POST['startLocation']
+    start_lat = request.POST['startLat']
+    start_lng = request.POST['startLng']
     start_date = request.POST['startDate']
     start_time = request.POST['startTime']
     display_start_time = datetime.strptime(start_date + start_time, '%Y-%m-%d%H:%M')
+
     end_location = request.POST['endLocation']
+    end_lat = request.POST['endLat']
+    end_lng = request.POST['endLng']
     end_date = request.POST['endDate']
     end_time = request.POST['endTime']
     display_end_time = datetime.strptime(end_date + end_time, '%Y-%m-%d%H:%M')
-    private = request.POST['']
+
+    private = request.POST['private']
     comments = request.POST['comments']
     
+    ride.created_by = request.user
     ride.ride_name = ride_name 
     ride.host_name = host_name
-    ride.start_location = start_location 
-    ride.start_time = display_start_time 
-    ride.end_location = end_location 
-    ride.end_time = display_end_time 
-    ride.private = private
-    ride.comments = comments
     ride.ride_pace = ride_pace
     ride.ride_type = ride_type
+
+    ride.start_location = start_location
+    ride.start_lat = start_lat
+    ride.start_long = start_lng 
+    ride.start_date = start_date
+    ride.start_time = display_start_time 
+
+    ride.end_location = end_location
+    ride.end_lat = end_lat
+    ride.end_long = end_lng
+    ride.end_Date = end_date
+    ride.end_time = display_end_time
+
+    ride.private = private
+    ride.comments = comments
+    
 
     ride.save()
 
@@ -175,6 +197,33 @@ def viewrides(request):
     except Ride.DoesNotExist:
         raise Http404("Ride does not exist")
 
-    context = {'rides': rides}
+    context = {'rides': rides, 'google_maps_api_key': secrets.google_maps_api_key,}
 
     return render(request, 'girodm/viewrides.html',context )
+
+
+def getLatLng(request):
+    start_location_list = []
+    end_location_list = []
+    rides = Ride.objects.all()
+
+    for ride in rides:
+        start_location = {
+            'label': ride.ride_name + ' start location',
+            'lat': ride.start_lat,
+            'lng': ride.start_long,
+        }
+        start_location_list.append(start_location)
+        end_location = {
+            'label': ride.ride_name + ' end location',
+            'lat': ride.end_lat,
+            'lng': ride.end_long,
+        }
+        end_location_list.append(end_location)
+    print(f'start_location = {start_location_list} \n {end_location_list}')
+    return JsonResponse({'start_location_list': start_location_list, 'end_location_list': end_location_list})
+
+def delete_ride(request, code):
+    ride = Ride.objects.get(code=code)
+    ride.delete()
+    return HttpResponseRedirect(reverse('girodm:user'))

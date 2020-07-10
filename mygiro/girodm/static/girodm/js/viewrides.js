@@ -56,14 +56,31 @@ window.initMap = function () {
                     title: 'Where a ride is'
                 });
                 function drop() {
-                    for (var i =0; i < markerArray.length; i++) {
-                      setTimeout(function() {
-                        addMarkerMethod();
-                      }, i * 200);
+                    for (var i = 0; i < markerArray.length; i++) {
+                        setTimeout(function () {
+                            addMarkerMethod();
+                        }, i * 200);
                     }
                 }
             }
         })
 
+        axios({
+            url: "/getlatlng/",
+            method: 'get'
+        }).then(response => {
+            console.log(response)
+        
+            let startLocationLat = response.data.start_location_list[0].lat
+            let startLocationLng = response.data.start_location_list[0].lng
+            let endLocationLat = response.data.end_location_list[0].lat
+            let endLocationLng = response.data.end_location_list[0].lng
+            let marker = new google.maps.Marker({
+                position: { lat: startLocationLat, lng: startLocationLng },
+                animation: google.maps.Animation.DROP,
+                label: response.data.start_location_list[0].label,
+                map: map,
+            })
+        })
     })
 }

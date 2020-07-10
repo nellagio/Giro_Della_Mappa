@@ -5,6 +5,7 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <link rel="stylesheet" type="text/css" href="{% static 'girodm/css/hostaride.css' %}">
 <script src="{% static 'girodm/js/hostaride.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
     type="text/javascript"></script>
@@ -16,9 +17,9 @@ Host a Ride - GiroDM
 <div id="map">
 
 </div>
-    {% for message in messages%}
-        <p>{{message}}</p>
-    {% endfor %}
+{% for message in messages%}
+<p>{{message}}</p>
+{% endfor %}
 
 <form class="form" action="{% url 'girodm:createride' %}" method="post">
     {% csrf_token %}
@@ -41,7 +42,7 @@ Host a Ride - GiroDM
         <label class="radio"> <input type="radio" name="pace" value="fs"> 13-17 mph </label>
         <label class="radio"><input type="radio" name="pace" value="tf"> 18+ mph </label>
     </label>
-    
+
     <div id="locationField">
         <input type="text" id="autocompleteStart" name="startLocation" value="" placeholder="Starting location">
         <input type="hidden" id="autoCompleteLatStart" name="startLat" value="">
@@ -51,26 +52,26 @@ Host a Ride - GiroDM
         <input type="hidden" id="autoCompleteLngEnd" name="endLng" value="">
     </div>
 
-            <label>Start date:<input type="date" name="startDate" value="" placeholder="Starting date"></label>
+    <label>Start date:<input type="date" name="startDate" value="" placeholder="Starting date"></label>
 
-            <label>Start time:<input type="time" name="startTime" value="" placeholder="Start time"></label>
+    <label>Start time:<input type="time" name="startTime" value="" placeholder="Start time"></label>
 
-            <label>End date:<input type="date" name="endDate" value="" placeholder="Ending time"></label>
+    <label>End date:<input type="date" name="endDate" value="" placeholder="Ending time"></label>
 
-            <label>End time:<input type="time" name="endTime" value="" placeholder="End time"></label>
+    <label>End time:<input type="time" name="endTime" value="" placeholder="End time"></label>
 
-            <label>
-                <label class="radio"><input type="radio" name="privacy" value="False" checked>Public event</label>
-                <label class="radio"><input type="radio" name="privacy" value="True"> Private event</label>
-            </label>
+    <label>
+        <label class="radio"><input type="radio" name="privacy" value="False" checked>Public event</label>
+        <label class="radio"><input type="radio" name="privacy" value="True"> Private event</label>
+    </label>
 
-            <textarea name="comments" value="" placeholder="Additional comments"></textarea>
+    <textarea name="comments" value="" placeholder="Additional comments"></textarea>
 
-            <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf"></div>
+    <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf"></div>
 
-            <button type="submit">Host your ride</button>
+    <button type="submit">Host your ride</button>
 
-            <a href="{% url 'girodm:user' %}">Cancel</a>
+    <a href="{% url 'girodm:user' %}">Cancel</a>
 
 </form>
 

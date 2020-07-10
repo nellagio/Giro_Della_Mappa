@@ -5,53 +5,86 @@
 <link rel="stylesheet" type="text/css" href="{% static 'girodm/css/editride.css' %}">
 <script src="{% static 'girodm/js/editride.js' %}"></script>
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
-  type="text/javascript"></script>
+    src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+    type="text/javascript"></script>
 {% endblock %}
 
 {% block title %}
- {{ride.ride_name}} - GiroDM
+{{ride.ride_name}} - GiroDM
 {% endblock %}
 
 {% block content %}
+
+
+
 <form class="form" action="{% url 'girodm:editride' ride.code %}" method="post">
-            {% csrf_token %}
+    {% csrf_token %}
 
-            <label>Ride name: <input type="text" name="rideName" value="{{ride.ride_name}}" placeholder="{{ride.ride_name}}" /></label>
+    <label>Ride name: <input type="text" name="rideName" value="{{ride.ride_name}}"
+            placeholder="{{ride.ride_name}}" /></label>
 
-            <label>Host by: <input type="text" name="hostName" value="{{ request.user.first_name }}" placeholder="{{ request.user.first_name }}"></label>
+    <label>Host by: <input type="text" name="hostName" value="{{ request.user.first_name }}"
+            placeholder="{{ request.user.first_name }}"></label>
+    <label>Type:
+        <label class="radio"><input type="radio" name="type" value="ep" {% if ride.ride_type == "ep" %} checked
+                {% endif %}> Social (18/21+) Ride </label>
+        <label class="radio"><input type="radio" name="type" value="ff" {% if ride.ride_type == "ff" %} checked
+                {% endif %}> Family Friendly </label>
+        <label class="radio"> <input type="radio" name="type" value="tp" {% if ride.ride_type == "tp" %} checked
+                {% endif %}> Training Ride </label>
+        <label class="radio"><input type="radio" name="type" value="sp" {% if ride.ride_type == "sp" %} checked
+                {% endif %}> Special Ride </label>
+    </label>
+    <label>Pace/Distance:
+        <label class="radio"><input type="radio" name="pace" value="sl" {% if ride.ride_pace == "sl" %} checked
+            {% endif %} > 3-8 mph </label>
+        <label class="radio"><input type="radio" name="pace" value="md" {% if ride.ride_pace == "md" %} checked
+            {% endif %}> 9-12 mph </label>
+        <label class="radio"> <input type="radio" name="pace" value="fs" {% if ride.ride_pace == "fs" %} checked
+            {% endif %} > 13-17 mph </label>
+        <label class="radio"><input type="radio" name="pace" value="tf" {% if ride.ride_pace == "tf" %} checked
+            {% endif %}> 18+ mph </label>
+    </label>
 
-            <label>Pace:
-                <label class="radio"><input type="radio" name="pace" value="ep" checked> Social Ride </label>
-                <label class="radio"><input type="radio" name="pace" value="ff"> Family Friendly </label>
-                <label class="radio"> <input type="radio" name="pace" value="tp"> Training Ride </label>
-            </label>
+    <div id="locationField">
+        <label>Starting location: <input type="text" name="startLocation" id="autocompleteStart"
+                value="{{ ride.start_location }}" placeholder="{{ ride.start_location }}"></label>
+        <input type="hidden" id="autoCompleteLatStart" name="startLat" value="{{ ride.start_lat }}">
+        <input type="hidden" id="autoCompleteLngStart" name="startLng" value="{{ ride.start_long }}">
+        <label>Ending location: <input type="text" name="endLocation" id="autocompleteEnd"
+                value="{{ ride.end_location }}n" placeholder="{{ ride.end_location }}"></label>
+        <input type="hidden" id="autoCompleteLatEnd" name="endLat" value="{{ ride.end_lat }}">
+        <input type="hidden" id="autoCompleteLngEnd" name="endLng" value="{{ ride.end_long }}">
+    </div>
+    <label>Start date:<input type="date" name="startDate" value="{{ride.start_time|date:"Y-m-d"}}"
+            placeholder="Starting date"></label>
 
-            <label>Starting location: <input type="text" name="startLocation" value="{{ ride.start_location }}" placeholder="{{ ride.start_location }}"></label>
+    <label>Start time:<input type="time" name="startTime" value="{{ride.start_time|date:"H:m"}}"
+            placeholder="Start time"></label>
 
-            <label>Ending location: <input type="text" name="endLocation" value="{{ ride.end_location }}n" placeholder="{{ ride.end_location }}"></label>
+    <label>End date:<input type="date" name="endDate" value="{{ride.end_time|date:"Y-m-d"}}"
+            placeholder="Ending time"></label>
 
-            <label>Start date:<input type="date" name="startDate" value="{{ride.start_time}}" placeholder="Starting date"></label>
+    <label>End time:<input type="time" name="endTime" value="{{ride.end_time|date:"H:m"}}"
+            placeholder="End time"></label>
 
-            <label>Start time:<input type="time" name="startTime" value="{{ride.start_time}}" placeholder="Start time"></label>
+    <label>
+        <label class="radio"><input type="radio" name="private" value="False" {% if ride.private == False %} checked
+                {% endif %}>Public event</label>
+        <label class="radio"><input type="radio" name="private" value="True" {% if ride.private == True %} checked
+                {% endif %}> Private event</label>
+    </label>
 
-            <label>End date:<input type="date" name="endDate" value="{{ride.end_time}}" placeholder="Ending time"></label>
+    <textarea name="comments">{{ride.comments}}</textarea>
 
-            <label>End time:<input type="time" name="endTime" value="{{ride.end_time}}" placeholder="End time"></label>
+    <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf"></div>
 
-            <label>
-                <label class="radio"><input type="radio" name="private" value="public" checked>Public event</label>
-                <label class="radio"><input type="radio" name="private" value="private"> Private event</label>
-            </label>
+    <button type="submit">Host your ride</button>
 
-            <textarea name="comments" value="{{ride.comments}}" placeholder="{{ride.comments}}"></textarea>
+    <a href="{% url 'girodm:user' %}">Cancel</a>
 
-            <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf"></div>
+</form>
+<div id="map">
 
-            <button type="submit">Host your ride</button>
-
-            <a href="{% url 'girodm:user' %}">Cancel</a>
-
-        </form>
-        
+</div>
 {% endblock %}
