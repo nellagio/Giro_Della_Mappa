@@ -7,6 +7,7 @@
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
   type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 {% endblock %}
 
 {% block title %}
@@ -19,7 +20,7 @@
   <input id="autocomplete" placeholder="Enter your address" type="text" />
 </div>
 <div class="mapDiv">
-  <h2> here are some on going rides today</h2>
+  <h2>Rides today:</h2>
     <div id="map">
 
     </div>

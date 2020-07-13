@@ -3,16 +3,18 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'girodm/css/ride.css' %}">
-<script src="{% static 'girodm/js/ride.js' %}"></script>
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
   type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 {% endblock %}
 {% block title %}
 {{ride.ride_name}} - GiroDM
 {% endblock %}
 {% block content %}
+
 <div class="ride_div">
+  <a href="{% url 'girodm:viewrides' %}">Back to Rides</a>
   <h1>{{ride.ride_name}}</h1>
   <p>Hosted by: {{ride.host_name}}</p>
   <p>Pace: {{ride.get_ride_pace_display}}</p>
@@ -29,5 +31,53 @@
 <div id="map">
 
 </div>
+<a href="{% url 'girodm:viewrides' %}">Back to Rides</a>
+<script>
+  window.initMap = function () {
+    navigator.geolocation.getCurrentPosition(position => {
+      let user_latitude = position.coords.latitude
+      let user_longitude = position.coords.longitude
+      let user_coords = { lat: user_latitude, lng: user_longitude }
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: user_coords,
+        zoom: 11,
+        disableDefaultUI: true,
+      });
+      let bikeLayer = new google.maps.BicyclingLayer();
+      bikeLayer.setMap(map);
+      var user_coords_marker = new google.maps.Marker({
+        position: user_coords,
+        map: map,
+        title: 'Your location!',
+        icon: {
+          url: "/static/girodm/images/streetview_icon.png",
+          scaledSize: new google.maps.Size(40, 40),
+        }
 
+      });
+
+      let marker_start = new google.maps.Marker({
+        position: { lat:{{ride.start_lat}}, lng:{{ride.start_long}} },
+        animation: google.maps.Animation.DROP,
+        title: '{{ride.ride_name}} start',
+        map: map,
+        icon: {
+          url: "/static/girodm/images/future_logo.png",
+          scaledSize: new google.maps.Size(70, 50),
+        },
+      })
+
+      let marker_end = new google.maps.Marker({
+        position: { lat:{{ride.end_lat}}, lng:{{ride.end_long}} },
+        animation: google.maps.Animation.DROP,
+        title: '{{ride.ride_name}} end location',
+        map: map,
+        icon: {
+          url: "/static/girodm/images/end_flag.png",
+          scaledSize: new google.maps.Size(60, 52),
+        },
+      })
+    })
+  }
+</script>
 {% endblock %}

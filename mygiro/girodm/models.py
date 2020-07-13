@@ -32,6 +32,7 @@ class Ride(models.Model):
     private = models.BooleanField(default=False)
     code = models.CharField(max_length=10) 
     comments = models.TextField()
+    times_clicked = models.IntegerField(default=0)
     ride_type = models.CharField(
         max_length=200,
         choices=RIDE_TYPE,
@@ -44,7 +45,7 @@ class Ride(models.Model):
     )
 
     def __str__(self):
-        return self.ride_name
+        return self.ride_name 
 
 # class Profile(models.Model):
 #     user = models.ForeignKey("", verbose_name=_(""), on_delete=models.CASCADE)

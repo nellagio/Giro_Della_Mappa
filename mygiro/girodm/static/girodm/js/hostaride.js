@@ -49,14 +49,7 @@ window.initMap = function () {
                     (start_place.address_components[1] && start_place.address_components[1].short_name || ''),
                     (start_place.address_components[2] && start_place.address_components[2].short_name || '')
                 ].join(' ')
-                // console.log(start_place)
-                var start_lat = start_place.geometry.location.lat()
-                var start_lng = start_place.geometry.location.lng()
-                autoCompleteLatStart.value = start_lat
-                autoCompleteLngStart.value = start_lng
-                var start_coords = { lat: start_lat, lng: start_lng }
-                console.log(start_coords)
-                console.log("start")
+                
                 var start_coords_marker = new google.maps.Marker({
                     position: start_coords,
                     draggable: true,
@@ -64,7 +57,13 @@ window.initMap = function () {
                     map: map,
                     title: 'Where a ride starts',
                 });
-                
+                var start_lat = start_place.geometry.location.lat()
+                var start_lng = start_place.geometry.location.lng()
+                autoCompleteLatStart.value = start_lat
+                autoCompleteLngStart.value = start_lng
+                var start_coords = { lat: start_lat, lng: start_lng }
+                console.log(start_coords)
+                console.log("start")
             }
         })
 

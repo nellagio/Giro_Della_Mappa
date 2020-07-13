@@ -122,11 +122,12 @@ def detail(request, code):
     ride = None
     try:
         ride = Ride.objects.get(code=code)
+        ride.times_clicked += 1
+        ride.save()
     except Ride.DoesNotExist:
         raise Http404("Ride does not exist")    
     
-    
-    context = {'ride': ride}
+    context = {'ride': ride, 'google_maps_api_key': secrets.google_maps_api_key,}
     
     return render(request, 'girodm/ride.html',context)
 
@@ -196,11 +197,9 @@ def viewrides(request):
         rides = Ride.objects.filter(private=False)
     except Ride.DoesNotExist:
         raise Http404("Ride does not exist")
-
     context = {'rides': rides, 'google_maps_api_key': secrets.google_maps_api_key,}
 
     return render(request, 'girodm/viewrides.html',context )
-
 
 def getLatLng(request):
     start_location_list = []
@@ -212,7 +211,9 @@ def getLatLng(request):
             'label': ride.ride_name + ' start location',
             'lat': ride.start_lat,
             'lng': ride.start_long,
+            'url': reverse('girodm:detail',kwargs={"code":ride.code})
         }
+
         start_location_list.append(start_location)
         end_location = {
             'label': ride.ride_name + ' end location',

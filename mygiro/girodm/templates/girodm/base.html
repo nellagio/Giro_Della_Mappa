@@ -9,6 +9,7 @@
   <meta name="keywords" content="portland, oregon, ride, bicycle, bike, social, pedalpalooza">
   <meta name="author" content="Nick Gallo">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="{% static 'girodm/js/base.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'girodm/css/base.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -26,12 +27,23 @@
 </head>
 
 <body>
-  <div class="header">
-    <a href="{% url 'girodm:index' %}"><img class="logo_img" alt="logo of site"
+
+  <div class="mobileNavbar">
+    <a href="{% url 'girodm:index' %}"><img title="home page" class="logo_img" alt="logo of site"
         src="{% static 'girodm/images/future_logo.png' %}" width="30" height="30" href="{% url 'girodm:index' %}"></a>
     <h2>Giro della Mappa</h2>
     {% if request.user.is_authenticated %}
-    <h2>Logged in as <a href="{% url 'girodm:user' %}">{{request.user}}</a></h2>
+    <h2>Logged in as <a title="user home" href="{% url 'girodm:user' %}">{{request.user}}</a></h2>
+    {% endif %}
+    <a href="{% url 'girodm:viewrides' %}">view currents rides</a>
+  </div>
+
+  <div class="navbar">
+    <a href="{% url 'girodm:index' %}"><img title="home page" class="logo_img" alt="logo of site"
+        src="{% static 'girodm/images/future_logo.png' %}" width="30" height="30" href="{% url 'girodm:index' %}"></a>
+    <h2>Giro della Mappa</h2>
+    {% if request.user.is_authenticated %}
+    <h2>Logged in as <a title="user home" href="{% url 'girodm:user' %}">{{request.user}}</a></h2>
     {% endif %}
     <a href="{% url 'girodm:viewrides' %}">view currents rides</a>
   </div>

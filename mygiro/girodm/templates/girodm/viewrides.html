@@ -16,7 +16,7 @@
     {% if not request.user.is_authenticated %}
     <a href="{% url "girodm:register" %}">Register to host a Ride</a>
     {% endif %}
-    
+    <a href="{% url 'girodm:viewrides' %}">Back to Rides</a>
     <h1>current rides:</h1>
     {% if request.user.is_authenticated %}
     <a href="{% url "girodm:host" %}">Host a Ride</a>
@@ -28,4 +28,5 @@
     <div id="map">
     </div>
     </div>
+
 {% endblock %}
