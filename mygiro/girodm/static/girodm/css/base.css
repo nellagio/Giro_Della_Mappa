@@ -69,6 +69,7 @@ a:hover{
     .navbar{
         display: flex;
         align-items: center;
+        justify-content: space-around;
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
         background-color: rgba(0, 255, 21, 0.479);

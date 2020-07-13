@@ -8,10 +8,10 @@ window.initMap = function () {
             center: user_coords,
             zoom: 13,
             disableDefaultUI: true,
-        });
-        let bikeLayer = new google.maps.BicyclingLayer();
-        bikeLayer.setMap(map);
-        var user_coords_marker = new google.maps.Marker({
+        })
+        let bikeLayer = new google.maps.BicyclingLayer()
+        bikeLayer.setMap(map)
+        let user_coords_marker = new google.maps.Marker({
             position: user_coords,
             map: map,
             title: 'Your location!',
@@ -20,7 +20,7 @@ window.initMap = function () {
                 scaledSize: new google.maps.Size(60, 40),
             }
 
-        });
+        })
 
         // gets axios response from own database, sets a marker for each ride on the map with a clickable link to the ride.
         axios({
@@ -29,7 +29,7 @@ window.initMap = function () {
         }).then(response => {
             console.log(response)
             let startLocations = response.data.start_location_list
-            for (let i = 0; i < startLocations.length; ++i) {
+            for (let i = 0 i < startLocations.length ++i) {
                 let marker = new google.maps.Marker({
                     position: { lat: startLocations[i].lat, lng: startLocations[i].lng },
                     animation: google.maps.Animation.DROP,
@@ -41,7 +41,7 @@ window.initMap = function () {
                     },
                 })
                 google.maps.event.addListener(marker, 'click', function () {
-                    window.location.href = startLocations[i].url;
+                    window.location.href = startLocations[i].url
                 })
             }
         })

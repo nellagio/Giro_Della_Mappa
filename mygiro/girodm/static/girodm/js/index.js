@@ -11,7 +11,7 @@ window.initMap = function () {
         });
         let bikeLayer = new google.maps.BicyclingLayer();
         bikeLayer.setMap(map);
-        var user_coords_marker = new google.maps.Marker({
+        let user_coords_marker = new google.maps.Marker({
             position: user_coords,
             map: map,
             title: 'Your location!',
