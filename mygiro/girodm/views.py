@@ -18,6 +18,10 @@ def index(request):
     context = {'google_maps_api_key': secrets.google_maps_api_key}
     return render(request,'girodm/index.html', context)
 
+def about(request):
+    context = {'google_maps_api_key': secrets.google_maps_api_key}
+    return render(request,'girodm/about.html', context)
+
 @login_required(login_url='login')
 def user(request):
     rides = Ride.objects.filter(created_by=request.user)

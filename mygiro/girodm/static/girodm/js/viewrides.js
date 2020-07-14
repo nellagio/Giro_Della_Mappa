@@ -29,7 +29,7 @@ window.initMap = function () {
         }).then(response => {
             console.log(response)
             let startLocations = response.data.start_location_list
-            for (let i = 0 i < startLocations.length ++i) {
+            for (let i = 0; i < startLocations.length; ++i) {
                 let marker = new google.maps.Marker({
                     position: { lat: startLocations[i].lat, lng: startLocations[i].lng },
                     animation: google.maps.Animation.DROP,

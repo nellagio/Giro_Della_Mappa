@@ -40,8 +40,9 @@
       let user_coords = { lat: user_latitude, lng: user_longitude }
       map = new google.maps.Map(document.getElementById('map'), {
         center: user_coords,
-        zoom: 11,
+        zoom: 13,
         disableDefaultUI: true,
+        zoomControl: false,
       });
       let bikeLayer = new google.maps.BicyclingLayer();
       bikeLayer.setMap(map);
@@ -73,8 +74,11 @@
         title: '{{ride.ride_name}} end location',
         map: map,
         icon: {
+          {% comment %} `endpoint/${image.jpg}` {% endcomment %}
           url: "/static/girodm/images/end_flag.png",
           scaledSize: new google.maps.Size(60, 52),
+          origin: new window.google.maps.Point(0,0),
+          anchor: new window.google.maps.Point(15,15),
         },
       })
     })

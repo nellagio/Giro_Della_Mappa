@@ -1,0 +1,29 @@
+{% extends 'girodm/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'girodm/css/about.css' %}">
+<script src="{% static 'girodm/js/about.js' %}"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+  type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+{% endblock %}
+
+{% block title %}
+ Giro Della Mappa - Our mission
+{% endblock %}
+
+{% block content %}
+
+<div class="aboutUs">
+<img class="aboutImages" alt="logo of site"
+      src="{% static 'girodm/images/ridetherim.jpg' %}">
+<p>With the intent of promoting a healthy and safe habit of cycling and a dash of socialization. Whether you wear spandex and riding a multi-thousand dollar bike or just borrowing a friend's beach cruiser to meetup with friends and ride we hope you Ride the Map.</p>
+</div>
+<div class="aboutUs">
+    <p>aoisdfo;iuahsdiufhasuidhfoiasjdfioasdufhasuidfhoi;ashdfiub asddiufbasddnfkjsa.dnf.jansdkjfnkjsndfanskjdf</p>
+    <img class="aboutImages" src="{% static 'girodm/images/group.jpg'%}">
+</div>
+
+{% endblock %}

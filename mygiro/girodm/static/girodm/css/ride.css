@@ -1,6 +1,6 @@
 #map {
-    width: 350px;
-    height: 400px;
+    width: 100%;
+    height: 450px;
     background-color: grey;
     border-radius: 15px;
 }

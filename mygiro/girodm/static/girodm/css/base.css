@@ -1,9 +1,7 @@
-body{
-    background-color: rgba(255, 0, 0, 0.616);
-    font-family: 'Tajawal', sans-serif;
-    margin: 0px;
+body {
+    margin: 0;
+    background-color: rgba(255, 66, 66, 0.726), !important;
 }
-
 html {
     box-sizing: border-box;
 }
@@ -16,15 +14,17 @@ html {
 /* mobile header start */
 .mobileNavbar{
     display: flex;
-        align-items: center;
-        border-bottom-right-radius: 15px;
-        border-bottom-left-radius: 15px;
-        background-color: rgba(0, 255, 21, 0.479);
+    align-items: center;
+    justify-content: center;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: rgba(0, 255, 21, 0.479);
+    margin-bottom: 10px;
 }
 
 /* mobile header end */
 .navbar{
-    display: none;
+    display: none !important;
 }
 
 .main{
@@ -43,13 +43,19 @@ a:hover{
 }
 
 .footer{
+    margin-top: 15px;
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     height: 75px;
     background-color: rgba(0, 255, 21, 0.479);
+}
+.footerLink{
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 @media (min-width: 576px) {
@@ -67,9 +73,9 @@ a:hover{
         display: none;
     }
     .navbar{
-        display: flex;
+        display: flex !important;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
         background-color: rgba(0, 255, 21, 0.479);
@@ -87,7 +93,5 @@ a:hover{
 @media (min-width: 1200px) {
     body{
         background-color: rgba(245, 3, 3, 0.219);
-        padding-right: 250px;
-        padding-left: 250px;
     }   
 }

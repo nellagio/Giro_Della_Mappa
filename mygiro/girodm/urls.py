@@ -4,6 +4,7 @@ from . import views
 app_name = 'girodm'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('mission/', views.about, name="about"),
     path('user/', views.user, name='user'),
     path('host/', views.host, name='host'),
     path('login/', views.loginPage, name="login"),
