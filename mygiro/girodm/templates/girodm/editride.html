@@ -23,7 +23,7 @@
     <label>Ride name: <input type="text" name="rideName" value="{{ride.ride_name}}"
             placeholder="{{ride.ride_name}}" /></label>
 
-    <label>Host by: <input type="text" name="hostName" value="{{ request.user.first_name }}"
+    <label>Hosted by: <input type="text" name="hostName" value="{{ request.user.first_name }}"
             placeholder="{{ request.user.first_name }}"></label>
     <label>Type:
         <label class="radio"><input type="radio" name="type" value="ep" {% if ride.ride_type == "ep" %} checked
@@ -51,11 +51,17 @@
                 value="{{ ride.start_location }}" placeholder="{{ ride.start_location }}"></label>
         <input type="hidden" id="autoCompleteLatStart" name="startLat" value="{{ ride.start_lat }}">
         <input type="hidden" id="autoCompleteLngStart" name="startLng" value="{{ ride.start_long }}">
+        <div id="startMap">
+
+        </div>
         <label>Ending location: <input type="text" name="endLocation" id="autocompleteEnd"
                 value="{{ ride.end_location }}n" placeholder="{{ ride.end_location }}"></label>
         <input type="hidden" id="autoCompleteLatEnd" name="endLat" value="{{ ride.end_lat }}">
         <input type="hidden" id="autoCompleteLngEnd" name="endLng" value="{{ ride.end_long }}">
     </div>
+    <div id="endMap">
+
+        </div>
     <label>Start date:<input type="date" name="startDate" value="{{ride.start_time|date:"Y-m-d"}}"
             placeholder="Starting date"></label>
 
@@ -79,7 +85,7 @@
 
     <div class="g-recaptcha" data-sitekey="6LeVHqwZAAAAALjMdMK_fV7Aq9F5l5ETRv5E64kf"></div>
 
-    <button type="submit">Host your ride</button>
+    <button type="submit">Save changes</button>
 
     <a href="{% url 'girodm:user' %}">Cancel</a>
 

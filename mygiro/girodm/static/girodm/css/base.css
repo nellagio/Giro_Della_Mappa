@@ -1,6 +1,9 @@
 body {
     margin: 0;
-    background-color: rgba(255, 66, 66, 0.726), !important;
+    font-size: 20px;
+    font-family: 'Tajawal', sans-serif !important;
+    background-color: #D9D9D9;
+    color: #ee000cb0;
 }
 html {
     box-sizing: border-box;
@@ -11,20 +14,28 @@ html {
 *:after {
     box-sizing: inherit;
 }
+.logo{
+    color: white;
+    font-family: 'Pacifico', cursive;
+}
 /* mobile header start */
 .mobileNavbar{
+    height: 55px;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
-    background-color: rgba(0, 255, 21, 0.479);
+    background-color:#ee000c;
     margin-bottom: 10px;
+    color: #333333;
 }
 
 /* mobile header end */
 .navbar{
-    display: none !important;
+    display: none;
+    margin-bottom: 20px;
 }
 
 .main{
@@ -35,14 +46,13 @@ html {
 }
 a{
     text-decoration: none;
-    color: white;
+    color: rgb(77, 77, 77);
 }
 a:hover{
     text-decoration: none;
     color: green;
 }
-
-.footer{
+.mobileFooter{
     margin-top: 15px;
     width: 100%;
     display: flex;
@@ -50,48 +60,67 @@ a:hover{
     justify-content: center;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
-    height: 75px;
-    background-color: rgba(0, 255, 21, 0.479);
+    height: 90px;
+    background-color: #333333;
+    }
+.footer{
+    display: none;
 }
 .footerLink{
+    color: white;
     padding-left: 5px;
     padding-right: 5px;
 }
 
 @media (min-width: 576px) {
-    body{
-       background: rebeccapurple;
-    }
     
 }
 
 @media (min-width: 768px) { 
     body{
-        background-color: blue;
+        padding-right: 25px;
+        padding-left: 25px;
+        font-size: 25px;
     }
     .mobileNavbar{
         display: none;
     }
     .navbar{
-        display: flex !important;
+        display: flex;
         align-items: center;
         justify-content: space-between;
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
-        background-color: rgba(0, 255, 21, 0.479);
+        background-color: #ee000c;
+        color: #333333;
+    }
+    .mobileFooter{
+        display: none;
+    }
+    .footer{
+        margin-top: 15px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
+        height: 90px;
+        background-color: #333333;
     }
 }
 
 
 @media (min-width: 992px) { 
-    body{
-        background-color: red;
-    }
+
 }
 
 
 @media (min-width: 1200px) {
     body{
-        background-color: rgba(245, 3, 3, 0.219);
+        background-color: #D9D9D9;
+    }
+    .navbar{
+        height: 95px;
     }   
 }

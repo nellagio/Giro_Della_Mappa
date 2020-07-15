@@ -16,7 +16,7 @@
 
 {% block content %}
 
-<h1>Login</h1>
+<h1>Login to host or edit a ride:</h1>
     {% for message in messages%}
         <p>{{message}}</p>
     {% endfor %}
@@ -27,6 +27,7 @@
     
         <button type="submit">Login</button>
     </form>
-    <button href="{% url 'girodm:register' %}">Register</button>
+    <p>Need to register? <a href="{% url 'girodm:register' %}">Click here</a>
+            {{form.errors}}
 </div>
 {% endblock %}

@@ -13,16 +13,16 @@
 {% endblock %}
 {% block content %}
 <h3>Hello, {{request.user.first_name}} </h3>
-
+        <div class="hostDiv">
         <a href="{% url 'girodm:host' %}">Host a ride</a>
-        <a href="{% url 'girodm:viewrides' %}">view currents rides</a>
-
+        </div>
+        <a href="{% url 'girodm:viewrides' %}">View Currents Rides</a>
         <h3>You're the host of these rides:</h3>
         {% for ride in rides %}
-        <a href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a>
+        <a title="View the public facing page." href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a>
         <p class="viewedPtag">Users have viewed this ride information {{ride.times_clicked}} times.</p> 
-        <a href="{% url "girodm:editridepage" ride.code %}">Edit this ride</a>
-        <a href="{% url "girodm:deleteride" ride.code %}">Delete this ride</a>
+        <a title="Edit your ride." href="{% url "girodm:editridepage" ride.code %}">Edit this ride</a>
+        <a title="Delete this ride forever." href="{% url "girodm:deleteride" ride.code %}">Delete this ride</a>
         <br/>
         {% endfor %}
 {% endblock %}

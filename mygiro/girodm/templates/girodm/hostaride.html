@@ -14,9 +14,7 @@
 Host a Ride - GiroDM
 {% endblock %}
 {% block content %}
-<div id="map">
 
-</div>
 {% for message in messages%}
 <p>{{message}}</p>
 {% endfor %}
@@ -26,7 +24,7 @@ Host a Ride - GiroDM
 
     <label>Ride name: <input type="text" name="rideName" value="" placeholder="Ride name" /></label>
 
-    <label>Host by: <input type="text" name="hostName" value="{{ request.user.first_name }}"
+    <label>Hosted by: <input type="text" name="hostName" value="{{ request.user.first_name }}"
             placeholder="{{ request.user.first_name }}"></label>
 
     <label>Type:
@@ -47,9 +45,15 @@ Host a Ride - GiroDM
         <input type="text" id="autocompleteStart" name="startLocation" value="" placeholder="Starting location">
         <input type="hidden" id="autoCompleteLatStart" name="startLat" value="">
         <input type="hidden" id="autoCompleteLngStart" name="startLng" value="">
+        <div id="startMap">
+
+        </div>
         <input type="text" id="autocompleteEnd" name="endLocation" value="" placeholder="Ending location">
         <input type="hidden" id="autoCompleteLatEnd" name="endLat" value="">
         <input type="hidden" id="autoCompleteLngEnd" name="endLng" value="">
+        <div id="endMap">
+
+        </div>
     </div>
 
     <label>Start date:<input type="date" name="startDate" value="" placeholder="Starting date"></label>
@@ -59,11 +63,6 @@ Host a Ride - GiroDM
     <label>End date:<input type="date" name="endDate" value="" placeholder="Ending time"></label>
 
     <label>End time:<input type="time" name="endTime" value="" placeholder="End time"></label>
-
-    <label>
-        <label class="radio"><input type="radio" name="privacy" value="False" checked>Public event</label>
-        <label class="radio"><input type="radio" name="privacy" value="True"> Private event</label>
-    </label>
 
     <label>
         <label class="radio"><input type="radio" name="privacy" value="False" checked>Public event</label>

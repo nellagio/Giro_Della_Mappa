@@ -4,3 +4,15 @@
     background-color: grey;
     border-radius: 15px;
 }
+.registerDiv{
+    border-bottom:1px solid #333333;
+}
+
+@media (min-width: 1200px) {
+    #map {
+        width: 650px;
+        height: 650px;
+        background-color: grey;
+        border-radius: 15px;
+    }   
+}

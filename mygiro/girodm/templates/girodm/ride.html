@@ -3,18 +3,20 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'girodm/css/ride.css' %}">
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
-  type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 {% endblock %}
 {% block title %}
-{{ride.ride_name}} - GiroDM
+{{ride.ride_name}}- GiroDM
 {% endblock %}
 {% block content %}
 
-<div class="ride_div">
-  <a href="{% url 'girodm:viewrides' %}">Back to Rides</a>
+<div class="userDiv">
+{% if request.user.is_authenticated %}
+    <a title="user home" href="{% url 'girodm:user' %}">Back to {{request.user}}'s page</a>
+  {% endif %}
+</div>
+  <a href="{% url 'girodm:viewrides' %}">View Current Rides</a>
+<div class=" ride_div">
   <h1>{{ride.ride_name}}</h1>
   <p>Hosted by: {{ride.host_name}}</p>
   <p>Pace: {{ride.get_ride_pace_display}}</p>
@@ -23,8 +25,12 @@
   <p>Start time: {{ride.start_time}}</p>
   <p>Ending location: {{ride.end_location}}</p>
   <p>Estimated ending time: {{ride.end_time}}</p>
+  {% if ride.private == True %}
+  <h2> **This ride is marked as private, share this link with care!**<h2>
+  {% endif %}
   <p>Is a private event: {{ride.private}}</p>
-  <p>Share: <a href="http://localhost:8000/ride/{{ride.code}}/">http://localhost:8000/ride/{{ride.code}}/</a></p>
+  <p>Share: <a id="rideLink" href="http://localhost:8000/ride/{{ride.code}}/">http://girodm.com/ride/{{ride.code}}/</a>
+  </p>
   <p>Additional information: {{ride.comments}}</p>
 </div>
 
@@ -40,9 +46,8 @@
       let user_coords = { lat: user_latitude, lng: user_longitude }
       map = new google.maps.Map(document.getElementById('map'), {
         center: user_coords,
-        zoom: 13,
+        zoom: 11,
         disableDefaultUI: true,
-        zoomControl: false,
       });
       let bikeLayer = new google.maps.BicyclingLayer();
       bikeLayer.setMap(map);
@@ -58,7 +63,7 @@
       });
 
       let marker_start = new google.maps.Marker({
-        position: { lat:{{ride.start_lat}}, lng:{{ride.start_long}} },
+        position: { lat: {{ ride.start_lat }}, lng: {{ ride.start_long }} },
         animation: google.maps.Animation.DROP,
         title: '{{ride.ride_name}} start',
         map: map,
@@ -68,20 +73,21 @@
         },
       })
 
-      let marker_end = new google.maps.Marker({
-        position: { lat:{{ride.end_lat}}, lng:{{ride.end_long}} },
-        animation: google.maps.Animation.DROP,
-        title: '{{ride.ride_name}} end location',
-        map: map,
-        icon: {
-          {% comment %} `endpoint/${image.jpg}` {% endcomment %}
-          url: "/static/girodm/images/end_flag.png",
-          scaledSize: new google.maps.Size(60, 52),
-          origin: new window.google.maps.Point(0,0),
-          anchor: new window.google.maps.Point(15,15),
+  let marker_end = new google.maps.Marker({
+    position: { lat: {{ ride.end_lat }}, lng: {{ ride.end_long }} },
+    animation: google.maps.Animation.DROP,
+    title: '{{ride.ride_name}} end location',
+    map: map,
+    icon: {
+      url: "/static/girodm/images/end_flag.png",
+      scaledSize: new google.maps.Size(60, 52),
         },
       })
     })
-  }
+  
+}
 </script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+  type="text/javascript"></script>
 {% endblock %}

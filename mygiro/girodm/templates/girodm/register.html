@@ -13,7 +13,7 @@
  Register - GiroDM
 {% endblock %}
 {% block content %}
-<h1> Register here </h1>
+<h1> Register to host your own ride: </h1>
     {% for message in messages%}
         <p>{{message}}</p>
     {% endfor %}
@@ -36,7 +36,7 @@
                 <input type="submit" name="Create User">
             </form>
             
-            <p>Already have a login? <a href="{% url 'girodm:login' %}">Login here</a>
+            <p>Already have a login? <a href="{% url 'girodm:login' %}">Click here</a>
             {{form.errors}}
         </form>
 {% endblock %}
