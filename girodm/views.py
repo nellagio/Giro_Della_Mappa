@@ -15,7 +15,8 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
 def index(request):
-    context = {'google_maps_api_key': settings.GOOGLE_API_KEY}
+    rides = Ride.objects.filter(private=False)
+    context = {'rides': rides,'google_maps_api_key': settings.GOOGLE_API_KEY}
     return render(request,'girodm/index.html', context)
 
 def about(request):
@@ -199,6 +200,7 @@ def viewrides(request):
     rides = None
     try:
         rides = Ride.objects.filter(private=False)
+        print(rides)
     except Ride.DoesNotExist:
         raise Http404("Ride does not exist")
     context = {'rides': rides, 'google_maps_api_key': settings.GOOGLE_API_KEY,}
@@ -208,7 +210,7 @@ def viewrides(request):
 def getLatLng(request):
     start_location_list = []
     end_location_list = []
-    rides = Ride.objects.all()
+    rides = Ride.objects.filter(private=False)
 
     for ride in rides:
         start_location = {
