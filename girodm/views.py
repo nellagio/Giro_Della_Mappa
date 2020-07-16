@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, Http404, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import string
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.urls import reverse
 from .models import Ride
 from django.core.exceptions import ObjectDoesNotExist
@@ -13,7 +13,6 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-
 
 def index(request):
     rides = Ride.objects.filter(private=False)

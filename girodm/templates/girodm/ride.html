@@ -16,22 +16,24 @@
   {% endif %}
 </div>
   <a href="{% url 'girodm:viewrides' %}">View Current Rides</a>
-<div class=" ride_div">
-  <h1>{{ride.ride_name}}</h1>
+<div class="rideDiv">
+  <div class="rideHeader">
+    <h1>{{ride.ride_name}}</h1>
+  </div>
   <p>Hosted by: {{ride.host_name}}</p>
   <p>Pace: {{ride.get_ride_pace_display}}</p>
   <p>Type: {{ride.get_ride_type_display}}</p>
-  <p>Start location: {{ride.start_location}}</p>
-  <p>Start time: {{ride.start_time}}</p>
-  <p>Ending location: {{ride.end_location}}</p>
-  <p>Estimated ending time: {{ride.end_time}}</p>
+  <p>Starting at: {{ride.start_location}}</p>
+  <p>Starting time: {{ride.start_time}}</p>
+  <p>Ending at: {{ride.end_location}}</p>
+  <p>Est. ending time: {{ride.end_time}}</p>
   {% if ride.private == True %}
-  <h2> **This ride is marked as private, share this link with care!**<h2>
-  {% endif %}
+  <h2>**This ride is marked as private, share this link with care!**<h2>
   <p>Is a private event: {{ride.private}}</p>
+  {% endif %}
   <p>Share: <a id="rideLink" href="https://www.girodm.com/ride/{{ride.code}}/">https://www.girodm.com/ride/{{ride.code}}/</a>
   </p>
-  <p>Additional information: {{ride.comments}}</p>
+  <p>Things to know: {{ride.comments}}</p>
 </div>
 
 <div id="map">
