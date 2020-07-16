@@ -35,7 +35,9 @@ html {
     background-color:#ee000c;
     margin-bottom: 10px;
 }
-
+h3{
+    margin: 0;
+}
 /* mobile header end */
 .navbar{
     display: none;
