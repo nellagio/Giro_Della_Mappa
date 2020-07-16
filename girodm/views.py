@@ -13,13 +13,14 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from . import secrets
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 def index(request):
-    context = {'google_maps_api_key': secrets.google_maps_api_key}
+    context = {'google_maps_api_key': settings.GOOGLE_API_KEY}
     return render(request,'girodm/index.html', context)
 
 def about(request):
-    context = {'google_maps_api_key': secrets.google_maps_api_key}
+    context = {'google_maps_api_key': settings.GOOGLE_API_KEY}
     return render(request,'girodm/about.html', context)
 
 @login_required(login_url='login')
@@ -66,7 +67,7 @@ def registerPage(request):
     return render(request, 'girodm/register.html', context)
 
 def host(request):
-    context = {'google_maps_api_key': secrets.google_maps_api_key}
+    context = {'google_maps_api_key': settings.GOOGLE_API_KEY}
     return render (request, 'girodm/hostaride.html', context)
 
 def createride(request):
@@ -139,7 +140,7 @@ def editRidePage(request, code):
 
     ride = Ride.objects.get(code=code)
 
-    context = {'ride': ride, 'google_maps_api_key': secrets.google_maps_api_key}
+    context = {'ride': ride, 'google_maps_api_key': settings.GOOGLE_API_KEY}
     
     return render(request, 'girodm/editride.html', context)
 
