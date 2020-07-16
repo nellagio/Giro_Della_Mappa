@@ -19,6 +19,9 @@ html {
     color: white;
     font-family: 'Pacifico', cursive;
 }
+.headerLink{
+    color: white;
+}
 /* mobile header start */
 .mobileNavbar{
     height: 55px;
@@ -54,7 +57,11 @@ a:hover{
     text-decoration: none;
     color: green;
 }
+.footerLink{
+    color: white;
+}
 .mobileFooter{
+    color: white;
     margin-top: 15px;
     width: 100%;
     display: flex;
@@ -69,7 +76,6 @@ a:hover{
     display: none;
 }
 .footerLink{
-
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -94,7 +100,6 @@ a:hover{
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
         background-color: #ee000c;
-        color: #333333;
     }
     .mobileFooter{
         display: none;
@@ -109,6 +114,7 @@ a:hover{
         border-top-left-radius: 15px;
         height: 90px;
         background-color: #333333;
+        color: white;
     }
 }
 
