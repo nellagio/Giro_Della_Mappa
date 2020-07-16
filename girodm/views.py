@@ -131,7 +131,7 @@ def detail(request, code):
     except Ride.DoesNotExist:
         raise Http404("Ride does not exist")    
     
-    context = {'ride': ride, 'google_maps_api_key': secrets.google_maps_api_key,}
+    context = {'ride': ride, 'google_maps_api_key': settings.GOOGLE_API_KEY,}
     
     return render(request, 'girodm/ride.html',context)
 
@@ -201,7 +201,7 @@ def viewrides(request):
         rides = Ride.objects.filter(private=False)
     except Ride.DoesNotExist:
         raise Http404("Ride does not exist")
-    context = {'rides': rides, 'google_maps_api_key': secrets.google_maps_api_key,}
+    context = {'rides': rides, 'google_maps_api_key': settings.GOOGLE_API_KEY,}
 
     return render(request, 'girodm/viewrides.html',context )
 
