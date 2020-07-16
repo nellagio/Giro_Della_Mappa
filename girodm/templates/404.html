@@ -1,0 +1,20 @@
+{% extends 'girodm/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'girodm/css/404.css' %}">
+<script src="{% static 'girodm/js/404.js' %}"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+  type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+{% endblock %}
+
+{% block title %}
+ Giro Della Mappa - Sorry about that!
+{% endblock %}
+
+
+{% block content %}
+  <h2>Woops, not sure what happened click here to go home: <a href="{% url 'girodm:index' %}"><h2 class="logo" >Giro della Mappa</h2></a> </h2>
+{% endblock %}
