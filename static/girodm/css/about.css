@@ -12,10 +12,6 @@
     align-items: center;
 }
 @media (min-width: 1200px) {
-    body{
-        padding-right: 150px;
-        padding-left: 150px;
-    }
     .aboutImages{
         width: 50%;
     }

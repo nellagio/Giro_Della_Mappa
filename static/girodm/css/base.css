@@ -1,6 +1,4 @@
 body {
-    padding-right: 15px;
-    padding-left: 15px;
     margin: 0;
     font-size: 20px;
     font-family: 'Tajawal', sans-serif !important;
@@ -19,6 +17,10 @@ html {
     color: white;
     font-family: 'Pacifico', cursive;
 }
+.logo_img{
+    height: 30px;
+    width: 30px;
+}
 .headerLink{
     color: white;
 }
@@ -27,12 +29,11 @@ html {
     height: 55px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     background-color:#ee000c;
     margin-bottom: 10px;
-
 }
 
 /* mobile header end */
@@ -42,6 +43,8 @@ html {
 }
 
 .main{
+    padding-right: 15px;
+    padding-left: 15px;
     color: #333333;
     display: flex;
     flex-direction: column;
@@ -86,8 +89,6 @@ a:hover{
 
 @media (min-width: 768px) { 
     body{
-        padding-right: 25px;
-        padding-left: 25px;
         font-size: 25px;
     }
     .mobileNavbar{
@@ -96,10 +97,14 @@ a:hover{
     .navbar{
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
         background-color: #ee000c;
+    }
+    .main{
+        padding-right: 25px;
+        padding-left: 25px;
     }
     .mobileFooter{
         display: none;
@@ -127,10 +132,16 @@ a:hover{
 @media (min-width: 1200px) {
     body{
         background-color: #D9D9D9;
-        padding-right: 250px;
-        padding-left: 250px;
+    }
+    .logo_img{
+        height: 70px;
+        width: 60px;
     }
     .navbar{
         height: 95px;
+    }
+    .main{
+        padding-right: 250px;
+        padding-left: 250px;
     }   
 }
