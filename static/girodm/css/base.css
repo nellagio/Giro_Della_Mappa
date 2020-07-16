@@ -127,6 +127,8 @@ a:hover{
 @media (min-width: 1200px) {
     body{
         background-color: #D9D9D9;
+        padding-right: 250px;
+        padding-left: 250px;
     }
     .navbar{
         height: 95px;
