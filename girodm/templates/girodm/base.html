@@ -35,7 +35,7 @@
   <div class="mobileNavbar">
     <a href="{% url 'girodm:index' %}"><img title="home page" class="logo_img" alt="logo of site"
       src="{% static 'girodm/images/future_logo.png' %}" width="30" height="30" href="{% url 'girodm:index' %}"></a>
-    <h4 class="logo">Giro della Mappa</h4>
+    <a href="{% url 'girodm:index' %}"><h4 class="logo">Giro della Mappa</h4></a>
     <div class="btn-group dropleft">
       <button type="button" class="btn btn-alert dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <img title="home page" class="logo_img" alt="logo of site"
@@ -60,7 +60,7 @@
   <div class="navbar">
     <a href="{% url 'girodm:index' %}"><img title="home page" class="logo_img" alt="logo of site"
         src="{% static 'girodm/images/future_logo.png' %}" width="50" height="40" href="{% url 'girodm:index' %}"></a>
-    <h2 class="logo" >Giro della Mappa</h2>
+    <a href="{% url 'girodm:index' %}"><h2 class="logo" >Giro della Mappa</h2></a>
     {% if request.user.is_authenticated %}
     <h4>Logged in as: <a title="user home" href="{% url 'girodm:user' %}">{{request.user}}</a></h4>
     {% endif %}

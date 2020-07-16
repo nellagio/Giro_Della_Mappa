@@ -23,9 +23,12 @@
     </div>
     <a href="{% url 'girodm:index' %}">Home</a>
     <h1>Current Rides:</h1>
+    
      {% for ride in rides%}
      {% comment %} random code queries to find right url {% endcomment %}
-        <a href="{% url "girodm:detail" ride.code %}" >{{ride.ride_name}}</a>
+     <div class="rideDiv">
+        <a href="{% url "girodm:detail" ride.code %}" >{{ride.ride_name}}</a><p>Starting on {{ride.start_time}}</p>
+      </div>
     {% endfor %}
     <div id="map">
     </div>

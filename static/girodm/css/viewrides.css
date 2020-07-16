@@ -7,6 +7,9 @@
 .registerDiv{
     border-bottom:1px solid #333333;
 }
+.rideDiv{
+    border-bottom:1px solid #333333;
+}
 
 @media (min-width: 1200px) {
     #map {

@@ -1,9 +1,10 @@
 body {
+    padding-right: 15px;
+    padding-left: 15px;
     margin: 0;
     font-size: 20px;
     font-family: 'Tajawal', sans-serif !important;
     background-color: #D9D9D9;
-    color: #ee000cb0;
 }
 html {
     box-sizing: border-box;
@@ -21,7 +22,6 @@ html {
 /* mobile header start */
 .mobileNavbar{
     height: 55px;
-    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +29,7 @@ html {
     border-bottom-left-radius: 15px;
     background-color:#ee000c;
     margin-bottom: 10px;
-    color: #333333;
+
 }
 
 /* mobile header end */
@@ -39,6 +39,7 @@ html {
 }
 
 .main{
+    color: #333333;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,7 +47,8 @@ html {
 }
 a{
     text-decoration: none;
-    color: rgb(77, 77, 77);
+    color: #333333;
+    text-shadow: 1px 1px 2px #333344, 0 0 1em #333333, 0 0 0.01em red;
 }
 a:hover{
     text-decoration: none;
@@ -67,7 +69,7 @@ a:hover{
     display: none;
 }
 .footerLink{
-    color: white;
+
     padding-left: 5px;
     padding-right: 5px;
 }
