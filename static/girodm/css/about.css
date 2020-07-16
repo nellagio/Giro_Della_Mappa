@@ -1,7 +1,8 @@
-.aboutUs{
-    width:75vw;
+.aboutImages{
+    width: 100%;
+    border-radius: 15px;
 }
 
-.aboutImages{
-    width: 420px;
+.reportBug{
+    width: 50vw;
 }
