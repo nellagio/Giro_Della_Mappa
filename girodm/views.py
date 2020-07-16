@@ -26,7 +26,7 @@ def about(request):
 @login_required(login_url='login')
 def user(request):
     rides = Ride.objects.filter(created_by=request.user)
-   
+    
     context = {'rides': rides}
 
     return render(request, 'girodm/user.html',context )

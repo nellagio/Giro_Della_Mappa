@@ -1,0 +1,15 @@
+.formHeader{
+    margin-bottom: 12px;
+}
+.formUserName, .formFirstName, .formEmail, .formPassword1, .formPassword2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subButtonDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}

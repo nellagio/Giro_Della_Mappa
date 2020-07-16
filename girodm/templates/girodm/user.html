@@ -17,13 +17,18 @@
         <a href="{% url 'girodm:host' %}">Host a ride</a>
         </div>
         <a href="{% url 'girodm:viewrides' %}">View Currents Rides</a>
-        <h3>You're the host of these rides:</h3>
-        {% for ride in rides %}
-        <a title="View the public facing page." href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a>
-        <p class="viewedPtag">Users have viewed this ride information {{ride.times_clicked}} times.</p> 
-        <a title="Edit your ride." href="{% url "girodm:editridepage" ride.code %}">Edit this ride</a>
-        <a title="Delete this ride forever." href="{% url "girodm:deleteride" ride.code %}">Delete this ride</a>
-        <br/>
-        {% endfor %}
+        {% if rides %}
+          <h3>You're the host of these rides:</h3>
+          {% for ride in rides %}
+          <a title="View the public facing page." href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a>
+          <p class="viewedPtag">Users have viewed this ride information {{ride.times_clicked}} times.</p> 
+          <a title="Edit your ride." href="{% url "girodm:editridepage" ride.code %}">Edit this ride</a>
+          <a title="Delete this ride forever." href="{% url "girodm:deleteride" ride.code %}">Delete this ride</a>
+          <br/>
+          {% endfor %}
+          {% else %}
+          <h3> You are not currently hosting any rides. </h3>
+          
+        {% endif %}
 {% endblock %}
 

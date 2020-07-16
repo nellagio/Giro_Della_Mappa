@@ -1,4 +1,5 @@
 #map {
+    margin-top: 15px;
     width: 100%;
     height: 450px;
     background-color: grey;
@@ -9,6 +10,7 @@
 }
 .rideDiv{
     border-bottom:1px solid #333333;
+    text-align: center;
 }
 
 @media (min-width: 1200px) {

@@ -5,38 +5,49 @@
 <link rel="stylesheet" type="text/css" href="{% static 'girodm/css/register.css' %}">
 <script src="{% static 'girodm/js/register.js' %}"></script>
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
-  type="text/javascript"></script>
+    src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+    type="text/javascript"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}
 {% block title %}
- Register - GiroDM
+Register - GiroDM
 {% endblock %}
 {% block content %}
-<h1> Register to host your own ride: </h1>
+<div class="formHeader">
+    <h1> Register to host your own ride: </h1>
+
     {% for message in messages%}
-        <p>{{message}}</p>
+    <p>{{message}}</p>
     {% endfor %}
-        <form method="POST" action="">
-            {% csrf_token %}
+</div>
+<form class="form_input" method="POST" action="">
+    {% csrf_token %}
+    <div class="formUserName">
+        {{form.username.label}}
+        {{form.username}}
+    </div>
+    <div class="formFirstName">
+        {{form.first_name.label}}
+        {{form.first_name}}
+    </div>
+    <div class="formEmail">
+        {{form.email.label}}
+        {{form.email}}
+    </div>
+    <div class="formPassword1">
+        {{form.password1.label}}
+        {{form.password1}}
+    </div>
+    <div class="formPassword2">
+        {{form.password2.label}}
+        {{form.password2}}
+    </div>
+    <div class="subButtonDiv">
+        <input type="submit" name="Create User">
+    </div>
+</form>
 
-            <form class="form_input">
-                {{form.username.label}}
-                {{form.username}}
-                {{form.first_name.label}}
-                {{form.first_name}}
-                {{form.email.label}}
-                {{form.email}}
-
-                {{form.password1.label}}
-                {{form.password1}}
-                {{form.password2.label}}
-                {{form.password2}}
-
-                <input type="submit" name="Create User">
-            </form>
-            
-            <p>Already have a login? <a href="{% url 'girodm:login' %}">Click here</a>
-            {{form.errors}}
-        </form>
-{% endblock %}
+<p>Already have a login? <a href="{% url 'girodm:login' %}">Click here</a>
+    {{form.errors}}
+    </form>
+    {% endblock %}
