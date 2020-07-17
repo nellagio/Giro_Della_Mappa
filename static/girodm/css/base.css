@@ -86,6 +86,9 @@ a:hover{
     padding-left: 5px;
     padding-right: 5px;
 }
+.socialIcons{
+    margin-left: 3px;
+}
 
 @media (min-width: 576px) {
     
