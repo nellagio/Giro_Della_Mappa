@@ -82,10 +82,11 @@
     <a class="footerLink" href="{% url 'girodm:register' %}">Register</a>
     <a class="footerLink" href="{% url 'girodm:login' %}">Login</a>
     {% endif %}
-    <a href="{% url 'girodm:index' %}"><img class="socialIcons" src="{% static 'girodm/images/instagramMobile.svg' %}"> </a>
+  
+    <h5>Girodm &copy; 2020</h5>
+    <img class="socialIcons" src="{% static 'girodm/images/instagramDesktop.svg' %}">
 
-    <a href="{% url 'girodm:index' %}"><img class="socialIcons" src="{% static 'girodm/images/facebookMobile.svg' %}"> </a>
-    <h5>Giro della Mappa &copy; 2020</h5>
+    <img class="socialIcons" src="{% static 'girodm/images/facebookDesktop.svg' %}">
   </div>
   <div class="footer">
     {% if request.user.is_authenticated %}
@@ -96,11 +97,10 @@
       <a class="footerLink" href="{% url 'girodm:login' %}">Login</a>
     {% endif %}
 
-    <a href="{% url 'girodm:index' %}"><img class="socialIcons" src="{% static 'girodm/images/instagramDesktop.svg' %}"> </a>
+    <h3>Girodm &copy; 2020</h3>
+    <img class="socialIcons" src="{% static 'girodm/images/instagramDesktop.svg' %}">
 
-    <a href="{% url 'girodm:index' %}"><img class="socialIcons" src="{% static 'girodm/images/facebookDesktop.svg' %}"> </a>
-
-    <h3>Giro della Mappa &copy; 2020</h3>
+    <img class="socialIcons" src="{% static 'girodm/images/facebookDesktop.svg' %}">
     {% endblock %}
   </div>
 </body>

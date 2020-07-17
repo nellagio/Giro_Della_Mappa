@@ -2,12 +2,15 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'girodm/css/404.css' %}">
-<script src="{% static 'girodm/js/404.js' %}"></script>
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
-  type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+{% comment %} <link rel="stylesheet" type="text/css" href="{% static 'girodm/css/404.css' %}"> {% endcomment %}
+<style>
+.errorDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+</style>
 {% endblock %}
 
 {% block title %}
@@ -16,6 +19,12 @@
 
 
 {% block content %}
-  <h3>500<h3>
-  <h2>Woops, not sure what happened click here to go home: <a href="{% url 'girodm:index' %}"><h2 class="logo" >Giro della Mappa</h2></a> </h2>
+<div class="errorDiv">
+  <div>
+    <h3>500 Server Error<h3>
+    </div>
+    <div>
+    <h2>Woops, not sure what happened!</h2> <a href="{% url 'girodm:index' %}" class="logo" > <h2> Giro della Mappa</h2></a>
+    </div>
+</div>
 {% endblock %}

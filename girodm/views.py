@@ -14,6 +14,15 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
+def handler404(request, exception):
+    return render(request,'girodm/404.html', status=404)
+
+    
+def handler500(request):
+
+    print('hello world')
+    return render(request,'girodm/500.html', status=500)
+
 def index(request):
     rides = Ride.objects.filter(private=False)
     context = {'rides': rides,'google_maps_api_key': settings.GOOGLE_API_KEY}
@@ -23,7 +32,7 @@ def about(request):
     context = {'google_maps_api_key': settings.GOOGLE_API_KEY}
     return render(request,'girodm/about.html', context)
 
-@login_required(login_url='login')
+@login_required
 def user(request):
     rides = Ride.objects.filter(created_by=request.user)
     

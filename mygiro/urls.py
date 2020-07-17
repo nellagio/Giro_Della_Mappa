@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+handler404 = 'girodm.views.handler404'
+handler500 = 'girodm.views.handler500'
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,0 +1,1 @@
+let google_maps_api_key = 'AIzaSyCFFsm_npVfVRN50GCG_Td_IuSbzV12-tw'
