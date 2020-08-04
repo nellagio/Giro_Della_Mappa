@@ -1,9 +1,3 @@
-#map {
-  width: 100%;
-  height: 450px;
-  background-color: grey;
-  border-radius: 15px;
-}
 .userDiv {
   border-bottom: 1px solid #333333;
 }
@@ -21,13 +15,28 @@
   border-radius: 5px;
 }
 .legend {
-  width: 100%;
-  height: 450px;
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(245, 245, 245, 0.959);
+  border-radius: 15px;
+}
+#map {
+  width: 450px;
+  height: 450px;
+  background-color: grey;
+  border-radius: 15px;
+  z-index: -1;
+}
+.mapDiv {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   border-style: double;
-  background-color: rgba(245, 245, 245, 0.411);
+  border-radius: 15px;
 }
 .iconImg {
   width: 40px;
