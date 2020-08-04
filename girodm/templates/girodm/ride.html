@@ -24,10 +24,15 @@
   </div>
 
   <h3 class="h3Tag">Hosted by: {{ride.host_name}}</h3>
-  <p>Pace: {{ride.get_ride_pace_display}}</p>
+  
+  <h3 class="h3Tag">Pace:</h3> 
+  <p>{{ride.get_ride_pace_display}}</p>
 
-  <h3 class="h3Tag">Type: {{ride.get_ride_type_display}}</h3>
-  <p>Starting at: {{ride.start_location}}</p>
+  <h3 class="h3Tag">Type:</h3>
+  <p> {{ride.get_ride_type_display}}</p>
+
+  <h3 class="h3Tag">Starting at:</h3>
+  <p> {{ride.start_location}}</p>
 
   <h3 class="h3Tag">Starting time:</h3>
   <p> {{ride.start_time}}</p>
