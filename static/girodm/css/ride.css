@@ -16,9 +16,14 @@
   border-bottom: 1px solid #333333;
   border-radius: 10px;
 }
-.h3Tag {
+.h4Tag {
   background-color: rgba(245, 245, 245, 0.52);
   border-radius: 5px;
+}
+
+.thingsToKnow {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 @media (min-width: 1200px) {
   #map {

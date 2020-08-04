@@ -23,36 +23,36 @@
     <h1>{{ride.ride_name}}</h1>
   </div>
 
-  <h3 class="h3Tag">Hosted by: {{ride.host_name}}</h3>
-  
-  <h3 class="h3Tag">Pace:</h3> 
+  <h5 class="h5Tag">Hosted by: {{ride.host_name}}</h5>
+
+  <h5 class="h5Tag">Pace:</h5> 
   <p>{{ride.get_ride_pace_display}}</p>
 
-  <h3 class="h3Tag">Type:</h3>
+  <h5 class="h5Tag">Type:</h5>
   <p> {{ride.get_ride_type_display}}</p>
 
-  <h3 class="h3Tag">Starting at:</h3>
+  <h5 class="h5Tag">Start:</h5>
   <p> {{ride.start_location}}</p>
 
-  <h3 class="h3Tag">Starting time:</h3>
+  <h5 class="h5Tag">Start time:</h5>
   <p> {{ride.start_time}}</p>
 
-  <h3 class="h3Tag">Ending at:</h3>
+  <h5 class="h5Tag">End at:</h5>
   <p>{{ride.end_location}}</p>
 
-  <h3 class="h3Tag">Est. ending time:</h3>
+  <h5 class="h5Tag">Est. end time:</h5>
   <p>{{ride.end_time}}</p>
 
   {% if ride.private == True %}  
-  <h3 class="h3Tag">Take note, this is a private event. Share with care.<h3>
+  <h5 class="h5Tag">Take note, this is a private event. Share with care.<h5>
   {% endif %}
   
-  <h3 class="h3Tag">Share:</h3>
+  <h5 class="h5Tag">Share:</h5>
   <p> 
   <a id="rideLink" href="https://www.girodm.com/ride/{{ride.code}}/">https://www.girodm.com/ride/{{ride.code}}/</a>
   </p>
 
-  <h3 class="h3Tag">Things to know:</h3>
+  <h5 class="h5Tag thingsToKnow">Things to know:</h5>
   <p>
      {{ride.comments}}
   </p>

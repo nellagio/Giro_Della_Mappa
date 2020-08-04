@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-size: 20px;
+    font-size: 15px;
     font-family: 'Tajawal', sans-serif !important;
     background-color: #D9D9D9;
 }
@@ -104,7 +104,10 @@ a:hover{
     }
 
 
-@media (min-width: 992px) { 
+@media (min-width: 992px) {
+    body{
+        font-size: 20px;
+    }
     .mobileNavbar{
         display: none;
     }
