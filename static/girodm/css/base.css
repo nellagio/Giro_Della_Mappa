@@ -16,6 +16,7 @@ html {
 .logo{
     color: white;
     font-family: 'Pacifico', cursive;
+    text-shadow: 1px 1px 2px #333344, 0 0 1em #333333, 0 0 0.01em red;
 }
 .logo_img{
     height: 30px;
@@ -56,9 +57,8 @@ html {
     align-items: center;
 }
 a{
-    text-decoration: none;
     color: #333333;
-    text-shadow: 1px 1px 2px #333344, 0 0 1em #333333, 0 0 0.01em red;
+    
 }
 a:hover{
     text-decoration: none;
