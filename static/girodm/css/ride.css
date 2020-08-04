@@ -1,26 +1,30 @@
 #map {
-    width: 100%;
-    height: 450px;
-    background-color: grey;
-    border-radius: 15px;
+  width: 100%;
+  height: 450px;
+  background-color: grey;
+  border-radius: 15px;
 }
-.userDiv{
-    border-bottom:1px solid #333333;
+.userDiv {
+  border-bottom: 1px solid #333333;
 }
-.rideDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.rideDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.rideHeader{
-    border-bottom:1px solid #333333;
-    border-radius: 10px;
+.rideHeader {
+  border-bottom: 1px solid #333333;
+  border-radius: 10px;
+}
+.otherPtag {
+  background-color: rgba(245, 245, 245, 0.52);
+  border-radius: 5px;
 }
 @media (min-width: 1200px) {
-    #map {
-        width: 650px;
-        height: 650px;
-        background-color: grey;
-        border-radius: 15px;
-    }   
+  #map {
+    width: 650px;
+    height: 650px;
+    background-color: grey;
+    border-radius: 15px;
+  }
 }
