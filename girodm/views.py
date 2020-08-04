@@ -204,7 +204,18 @@ def editRide(request, code):
     ride.save()
 
     return HttpResponseRedirect(reverse('girodm:detail',kwargs={"code":code}))
-    
+
+def calendarPage(request):
+    rides = None
+    try:
+        rides = Ride.objects.filter(private=False)
+        print(rides)
+    except Ride.DoesNotExist:
+        raise Http404("Ride does not exist")
+    context = {'rides': rides, 'google_maps_api_key': settings.GOOGLE_API_KEY,}
+
+    return render(request, 'girodm/calendar.html',context )
+
 def viewrides(request):
     rides = None
     try:

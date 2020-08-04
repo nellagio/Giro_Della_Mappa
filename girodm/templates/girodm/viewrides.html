@@ -13,6 +13,7 @@
  View Rides - GiroDM
 {% endblock %}
 {% block content %}
+    <a href="{% url "girodm:calendar" %}">calendar view</a>
     <div class="registerDiv">
     {% if request.user.is_authenticated %}
     <a href="{% url "girodm:host" %}">Host a Ride</a>

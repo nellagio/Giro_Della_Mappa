@@ -17,7 +17,7 @@ window.initMap = function () {
             title: 'Your location!',
             icon: {
                 url: "/static/girodm/images/streetview_icon.png",
-                scaledSize: new google.maps.Size(60, 40),
+                scaledSize: new google.maps.Size(40, 40),
             }
 
         });

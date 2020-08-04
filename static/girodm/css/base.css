@@ -98,6 +98,13 @@ a:hover{
     body{
         font-size: 25px;
     }
+    .main{
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+
+
+@media (min-width: 992px) { 
     .mobileNavbar{
         display: none;
     }
@@ -108,10 +115,6 @@ a:hover{
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
         background-color: #ee000c;
-    }
-    .main{
-        padding-right: 25px;
-        padding-left: 25px;
     }
     .mobileFooter{
         display: none;
@@ -128,10 +131,6 @@ a:hover{
         background-color: #333333;
         color: white;
     }
-}
-
-
-@media (min-width: 992px) { 
 
 }
 
