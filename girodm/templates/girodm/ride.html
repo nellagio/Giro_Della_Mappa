@@ -31,13 +31,13 @@
   <h5 class="h5Tag">Type:</h5>
   <p> {{ride.get_ride_type_display}}</p>
 
-  <h5 class="h5Tag">Start:</h5>
+  <h5 class="h5Tag">Start location:</h5>
   <p> {{ride.start_location}}</p>
 
   <h5 class="h5Tag">Start time:</h5>
   <p> {{ride.start_time}}</p>
 
-  <h5 class="h5Tag">End at:</h5>
+  <h5 class="h5Tag">End spot:</h5>
   <p>{{ride.end_location}}</p>
 
   <h5 class="h5Tag">Est. end time:</h5>
@@ -60,25 +60,22 @@
 
 </div>
 
-<div class="mapDiv">
-  <div class="legend">
-    <h5>Legend</h5>
-    <div class="icon">
-      <h6>Starting location: <img class="iconImg" src="/static/girodm/images/future_logo.png"></h6>
-
-    </div>
-    <div class="icon">
-      <h6>Ending location: <img class="iconImg" src="/static/girodm/images/end_flag.png"></h6>
-
-    </div>
-    <div class="icon">
-      <h6>Your location: <img class="iconImg" src="/static/girodm/images/streetview_icon.png"></h6>
-
-    </div>
-  </div>
-  <div id="map">
+<div class="legend">
+  <div class="icon">
+    <h6>Starting location: <img class="iconImg" src="/static/girodm/images/future_logo.png"></h6>
 
   </div>
+  <div class="icon">
+    <h6>Ending location: <img class="iconImg" src="/static/girodm/images/end_flag.png"></h6>
+
+  </div>
+  <div class="icon">
+    <h6>Your location: <img class="iconImg" src="/static/girodm/images/streetview_icon.png"></h6>
+
+  </div>
+</div>
+<div class="map" id="map">
+
 </div>
 <a href="{% url 'girodm:viewrides' %}">Back to Rides</a>
 <script>
@@ -101,7 +98,7 @@
         title: 'Your location!',
         icon: {
           url: "/static/girodm/images/streetview_icon.png",
-          scaledSize: new google.maps.Size(40, 40),
+          scaledSize: new google.maps.Size(25, 25),
         }
 
       });
@@ -113,7 +110,7 @@
         map: map,
         icon: {
           url: "/static/girodm/images/future_logo.png",
-          scaledSize: new google.maps.Size(70, 50),
+          scaledSize: new google.maps.Size(60, 40),
         },
       })
 
@@ -124,7 +121,7 @@
         map: map,
         icon: {
           url: "/static/girodm/images/end_flag.png",
-          scaledSize: new google.maps.Size(60, 52),
+          scaledSize: new google.maps.Size(50, 42),
         },
       })
     })
