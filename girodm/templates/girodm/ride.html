@@ -104,9 +104,9 @@
       });
 
       let marker_start = new google.maps.Marker({
-        position: { lat: 45.50242389999999, lng: -122.6749467 },
+        position: { lat: {{ ride.start_lat }}, lng: {{ ride.start_long }} },
         animation: google.maps.Animation.DROP,
-        title: 'Class_A&#x27;s Graduation  start',
+        title: '{{ride.ride_name}} start',
         map: map,
         icon: {
           url: "/static/girodm/images/future_logo.png",
@@ -115,9 +115,9 @@
       })
 
       let marker_end = new google.maps.Marker({
-        position: { lat: 45.510301, lng: -122.683614 },
+        position: { lat: {{ ride.end_lat }}, lng: {{ ride.end_long }} },
         animation: google.maps.Animation.DROP,
-        title: 'Class_A&#x27;s Graduation  end location',
+        title: '{{ride.ride_name}} end location',
         map: map,
         icon: {
           url: "/static/girodm/images/end_flag.png",
