@@ -24,7 +24,8 @@ def handler500(request):
     return render(request,'girodm/500.html', status=500)
 
 def index(request):
-    rides = Ride.objects.filter(private=False)
+    today = datetime.today().date()
+    rides = Ride.objects.filter(private=False,start_time__date=today)
     context = {'rides': rides,'google_maps_api_key': settings.GOOGLE_API_KEY}
     return render(request,'girodm/index.html', context)
 
@@ -231,13 +232,14 @@ def getLatLng(request):
     start_location_list = []
     end_location_list = []
     rides = Ride.objects.filter(private=False)
-
+ 
     for ride in rides:
         start_location = {
             'label': ride.ride_name + ' start location',
             'lat': ride.start_lat,
             'lng': ride.start_long,
-            'url': reverse('girodm:detail',kwargs={"code":ride.code})
+            'url': reverse('girodm:detail',kwargs={"code":ride.code}),
+            'date': ride.start_time,
         }
 
         start_location_list.append(start_location)

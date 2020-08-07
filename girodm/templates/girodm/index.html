@@ -51,7 +51,14 @@ window.initMap = function () {
             method: 'get'
         }).then(response => {
             console.log(response)
-            let startLocations = response.data.start_location_list
+            let startLocations = response.data.start_location_list.filter(date)
+            let today = new Date()
+            let todaysRides = []
+            console.log(startLocations)
+            for(let i = 0; i < startLocations.length; ++i){
+                let todaysRides = response.data.start_location_list.date
+            }
+
             for (let i = 0; i < startLocations.length; ++i) {
                 let marker = new google.maps.Marker({
                     position: { lat: startLocations[i].lat, lng: startLocations[i].lng },
