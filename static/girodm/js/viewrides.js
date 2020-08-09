@@ -6,7 +6,7 @@ window.initMap = function () {
         console.log(user_coords)
         map = new google.maps.Map(document.getElementById('map'), {
             center: user_coords,
-            zoom: 13,
+            zoom: 12,
             disableDefaultUI: true,
         })
         let bikeLayer = new google.maps.BicyclingLayer()
