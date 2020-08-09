@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, Http404, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import string
 import random
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from django.urls import reverse
 from .models import Ride
 from django.core.exceptions import ObjectDoesNotExist
@@ -218,9 +218,10 @@ def calendarPage(request):
     return render(request, 'girodm/calendar.html',context )
 
 def viewrides(request):
+    today = date.today()
     rides = None
     try:
-        rides = Ride.objects.filter(private=False)
+        rides = Ride.objects.filter(private=False,start_time__date__gte=today)
         print(rides)
     except Ride.DoesNotExist:
         raise Http404("Ride does not exist")

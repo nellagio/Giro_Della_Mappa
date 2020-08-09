@@ -29,11 +29,24 @@ window.initMap = function () {
         }).then(response => {
             console.log(response)
             let startLocations = response.data.start_location_list
+            let upcomingRides = []
+            let now = moment()
             for (let i = 0; i < startLocations.length; ++i) {
+                let ride = startLocations[i]
+                let dateTime = ride.date
+                let rideDated = dateTime.split("T")
+                let dateOfRide = rideDated[0]
+                if (moment(dateOfRide).diff(now, 'days') >= 0) {
+                    upcomingRides.push(ride)
+                }
+            }
+            console.log(upcomingRides)
+            for (let i = 0; i < upcomingRides.length; ++i) {
+                let rideToday = upcomingRides[i]
                 let marker = new google.maps.Marker({
-                    position: { lat: startLocations[i].lat, lng: startLocations[i].lng },
+                    position: { lat: rideToday.lat, lng: rideToday.lng },
                     animation: google.maps.Animation.DROP,
-                    title: startLocations[i].label,
+                    title: rideToday.label,
                     map: map,
                     icon: {
                         url: "/static/girodm/images/future_logo.png",
@@ -41,7 +54,7 @@ window.initMap = function () {
                     },
                 })
                 google.maps.event.addListener(marker, 'click', function () {
-                    window.location.href = startLocations[i].url
+                    window.location.href = rideToday.url;
                 })
             }
         })
