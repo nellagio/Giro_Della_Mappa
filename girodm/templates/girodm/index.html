@@ -15,8 +15,15 @@
 
 
 {% block content %}
+<h6>Current time:</h6>
 <h5 class="time_div" id="time"></h5>
   <h3>Rides today in your area:</h3>
+  {% for ride in rides%}
+    {% comment %} random code queries to find right url {% endcomment %}
+    <div class="rideDiv">
+    <a href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}} Starts at {{ride.start_time|date:"h:i A"}}</a>
+    </div>
+    {% endfor %}
   <div id="map">
 
   </div>
@@ -24,7 +31,7 @@
 <script>
 function currentTime(){
     let now = moment()
-    let displayTime = (now.format("dddd, MMMM Do YYYY, h:mm a"))
+    let displayTime = (now.format("dddd, MMMM Do, h:mm a"))
     document.getElementById('time').innerHTML = displayTime
 }
 currentTime()
@@ -47,6 +54,7 @@ window.initMap = function () {
             map: map,
             title: 'Your location!',
             icon: {
+                animation: google.maps.Animation.DROP,
                 url: "/static/girodm/images/streetview_icon.png",
                 scaledSize: new google.maps.Size(40, 40),
             }
