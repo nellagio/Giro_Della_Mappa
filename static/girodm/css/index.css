@@ -4,6 +4,23 @@
     background-color: grey;
     border-radius: 15px;
 }
+.timeDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ridesTodayDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.rideDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom:1px solid #333333;
+    margin-bottom: 10px;
+}
 @media (min-width: 1200px) {
     #map {
         width: 650px;

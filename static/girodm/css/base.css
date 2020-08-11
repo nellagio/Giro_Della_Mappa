@@ -27,7 +27,7 @@ html {
 }
 /* mobile header start */
 .mobileNavbar{
-    height: 55px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -88,6 +88,7 @@ a:hover{
 }
 .socialIcons{
     margin-left: 3px;
+    width: 25px;
 }
 
 @media (min-width: 576px) {
@@ -112,12 +113,17 @@ a:hover{
         display: none;
     }
     .navbar{
+        height: 95px;
         display: flex;
         align-items: center;
         justify-content: space-around;
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
         background-color: #ee000c;
+    }
+    .logo_img{
+        height: 60px;
+        width: 60px;
     }
     .mobileFooter{
         display: none;
@@ -145,9 +151,6 @@ a:hover{
     .logo_img{
         height: 70px;
         width: 70px;
-    }
-    .navbar{
-        height: 95px;
     }
     .main{
         padding-right: 250px;

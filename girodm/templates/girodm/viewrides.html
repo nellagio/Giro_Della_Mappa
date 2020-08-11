@@ -13,19 +13,17 @@
 View Rides - GiroDM
 {% endblock %}
 {% block content %}
-{% comment %} <a href="{% url "girodm:calendar" %}">calendar view</a>
-<div class="registerDiv"> {% endcomment %}
-  {% if request.user.is_authenticated %}
-  <a href="{% url "girodm:host" %}">Host a Ride</a>
-  <br />
-  <a href="{% url 'girodm:user' %}">{{request.user.first_name}}'s home page</a>
-  {% endif %}
-  {% if not request.user.is_authenticated %}
-  <a href="{% url "girodm:register" %}">Register to host a Ride</a>
-  <br />
-  <a href="{% url "girodm:login" %}">Login to host a Ride</a>
-  {% endif %}
-</div>
+
+{% if request.user.is_authenticated %}
+<a href="{% url "girodm:host" %}">Host a Ride</a>
+<br />
+<a href="{% url 'girodm:user' %}">{{request.user.first_name}}'s home page</a>
+{% endif %}
+{% if not request.user.is_authenticated %}
+<a href="{% url "girodm:register" %}">Register to host a Ride</a>
+<a href="{% url "girodm:login" %}">Login to host a Ride</a>
+{% endif %}
+
 <h1>Upcoming Rides:</h1>
 
 {% for ride in rides%}
