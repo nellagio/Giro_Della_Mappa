@@ -16,7 +16,7 @@
         <div class="hostDiv">
         <a href="{% url 'girodm:host' %}">Host a ride</a>
         </div>
-        <a href="{% url 'girodm:viewrides' %}">View Currents Rides</a>
+        <a href="{% url 'girodm:viewrides' %}">Upcoming Rides</a>
         {% if rides %}
           <h3>You're the host of these rides:</h3>
           {% for ride in rides %}

@@ -26,6 +26,7 @@
     <h6>Starts at {{ride.start_time|date:"h:i A"}}</h6>
     </div>
     {% endfor %}
+    <a class="mobileLink" href="{% url 'girodm:viewrides' %}">Upcoming Rides</a>
 </div>
 <div id="map">
 

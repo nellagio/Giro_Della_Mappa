@@ -21,7 +21,21 @@
     border-bottom:1px solid #333333;
     margin-bottom: 10px;
 }
+.mobileLink{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.226);
+    margin-bottom: 15px;
+    padding: 5px;
+    box-shadow: 2px 3px #888888;
+}
+@media (min-width: 992px) {
+    .mobileLink{
+        display: none;
+    }
+}
 @media (min-width: 1200px) {
+    
     #map {
         width: 650px;
         height: 650px;
