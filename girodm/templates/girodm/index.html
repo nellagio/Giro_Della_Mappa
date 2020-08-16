@@ -20,6 +20,9 @@
 <h5>Hourly forecast for today:</h5>
 <div class="ridesTodayDiv">
   <h4>Rides today in your area:</h4>
+{% if rides|length_is:"0"%}
+    <p>There are no rides today =[. You should consider hosting one!</p>
+{% endif %}
   {% for ride in rides%}
 
     <div class="rideDiv">
@@ -41,6 +44,8 @@
             url: `https://api.openweathermap.org/data/2.5/onecall?lat=${user_latitude}&lon=${user_longitude}&exclude=&appid={{weather_api_key}}`,  
         }).then((response) => {
             console.log(response)
+            let hourlyForcecast = response.data.hourly
+            console.log(hourlyForcecast)
         })
     })
 </script>
