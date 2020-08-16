@@ -26,6 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = ['.nellagio', '.herokuapp.com', 'localhost', '127.0.0.1']
 GOOGLE_API_KEY = config('GOOGLE_API_KEY')
+WEATHER_API_KEY = config('WEATHER_API_KEY')
 
 # Application definition
 

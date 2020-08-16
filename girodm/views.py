@@ -26,7 +26,7 @@ def handler500(request):
 def index(request):
     today = datetime.today().date()
     rides = Ride.objects.filter(private=False,start_time__date=today)
-    context = {'rides': rides,'google_maps_api_key': settings.GOOGLE_API_KEY}
+    context = {'rides': rides,'google_maps_api_key': settings.GOOGLE_API_KEY, 'weather_api_key':settings.WEATHER_API_KEY}
     return render(request,'girodm/index.html', context)
 
 def about(request):

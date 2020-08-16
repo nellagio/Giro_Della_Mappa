@@ -3,7 +3,7 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'girodm/css/index.css' %}">
-
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 {% endblock %}
 
@@ -17,6 +17,7 @@
 <h5>Current time:</h5>
 <h6 class="time_div" id="time"></h6>
 </div>
+<h5>Hourly forecast for today:</h5>
 <div class="ridesTodayDiv">
   <h4>Rides today in your area:</h4>
   {% for ride in rides%}
@@ -31,7 +32,18 @@
 <div id="map">
 
 </div>
-
+<script>
+    navigator.geolocation.getCurrentPosition(position => {
+        let user_latitude = position.coords.latitude
+        let user_longitude = position.coords.longitude
+        axios({
+            method: 'post',
+            url: `https://api.openweathermap.org/data/2.5/onecall?lat=${user_latitude}&lon=${user_longitude}&exclude=&appid={{weather_api_key}}`,  
+        }).then((response) => {
+            console.log(response)
+        })
+    })
+</script>
 <script src="{% static 'girodm/js/index.js' %}"></script>
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
