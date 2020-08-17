@@ -54,12 +54,13 @@ function addWeather(hour){
 
     let temperature = hour.temp
     let tempP = document.createElement("p")
+    tempP.setAttribute('class', 'temperatureDiv')
     let tempText = document.createTextNode(`Temperature: ${temperature}°`)
     tempP.appendChild(tempText)
     weatherDiv.appendChild(tempP)
     
     let icon = hour.weather[0].icon
-    let iconUrl = `http://openweathermap.org/img/wn/${icon}.png`
+    let iconUrl = `https://openweathermap.org/img/wn/${icon}.png`
     let iconImage = document.createElement("img")
     iconImage.setAttribute("src", iconUrl)
     
