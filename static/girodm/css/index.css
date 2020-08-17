@@ -9,6 +9,9 @@
     flex-direction: column;
     align-items: center;
 }
+.weatherDiv{
+    border: 1px solid black;
+}
 .ridesTodayDiv{
     display: flex;
     flex-direction: column;
