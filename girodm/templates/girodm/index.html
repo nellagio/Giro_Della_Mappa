@@ -47,7 +47,7 @@ function addWeather(hour){
     let hourDiv = document.getElementById("hourDiv")
     
     let time = hour.dt
-    let hoursToDisplay = moment(time * 1000).format("MMMM Do, h:mm a")
+    let hoursToDisplay = moment(time * 1000).format("MMM Do, h:mm a")
     let singleHourDiv = document.createElement("div")
     singleHourDiv.setAttribute('class', 'singleHourDiv')
     let hourP = document.createElement("p");
@@ -79,33 +79,16 @@ function addWeather(hour){
 
     let windSpeed = hour.wind_speed
     Math.ceil(windSpeed)
-    let windDirection = hour.wind_deg
-    {% comment %} if (windDirection = 15){
-        windDirection = "North"
-    }
-    else if (windDirection = 90){
-        windDirection = "East"
-    }
-    else if (windDirection = 180){
-        windDirection = "South"
-    }
-    else if (windDirection = 270){
-        windDirection = "West"
-    }
-    else{
-        windDirection = hour.wind_deg
-    } {% endcomment %}
-
-
+    
     let windDivP = document.createElement("p")
-    let windDivText = document.createTextNode(`Wind direction: ${windDirection}° at ${windSpeed}mph`)
+    let windDivText = document.createTextNode(`Wind speed: ${windSpeed}mph`)
     windDivP.appendChild(windDivText)
     singleHourDiv.appendChild(windDivP)
     
 
     let description = hour.weather[0].description
     let descriptionP = document.createElement("p")
-    let descriptionText = document.createTextNode(`Likely ${description}`)
+    let descriptionText = document.createTextNode(`${description}`)
     descriptionP.appendChild(descriptionText)
     descriptionP.appendChild(iconImage)
     singleHourDiv.appendChild(descriptionP)
