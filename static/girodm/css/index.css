@@ -10,7 +10,22 @@
     align-items: center;
 }
 .weatherDiv{
+    text-align: center;
     border: 1px solid black;
+    border-radius: 15px;
+    background-color: red;
+}
+.weatherDiv h5{
+    color: white;
+    font-size: 20px !important;
+}
+.singleHourDiv{
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    border:1px solid black;
+    background-color: rgb(124, 124, 124);
+    padding: 2px;
 }
 .ridesTodayDiv{
     display: flex;

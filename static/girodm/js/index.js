@@ -35,8 +35,8 @@ window.initMap = function () {
             url: "/getlatlng/",
             method: 'get'
         }).then(response => {
-            console.log(response)
             let startLocations = response.data.start_location_list
+            console.log(startLocations)
             let ridesToday = []
             let now = moment()
             for (let i = 0; i < startLocations.length; ++i) {
@@ -50,8 +50,9 @@ window.initMap = function () {
                     ridesToday.push(ride)
                 }
             }
-            console.log(ridesToday)
+            console.log('rides today', ridesToday)
             for (let i = 0; i < ridesToday.length; ++i) {
+                console.log("Helloworld1234")
                 let rideToday = ridesToday[i]
                 let marker = new google.maps.Marker({
                     position: { lat: rideToday.lat, lng: rideToday.lng },

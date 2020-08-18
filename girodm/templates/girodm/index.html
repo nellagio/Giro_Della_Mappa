@@ -14,16 +14,6 @@
 
 {% block content %}
 
-<div class="timeDiv">
-<h5>Current time:</h5>
-<h6 class="time_div" id="time"></h6>
-<div class="sunsetDiv">Sun setting at <span id="sunset"></span> today.</div>
-</div>
-
-<div id="weatherDiv" class="weatherDiv">
-<h5>Twelve Hour Forecast:</h5>
-</div>
-
 <div class="ridesTodayDiv">
   <h4>Rides today in your area:</h4>
   {% if rides|length_is:"0"%}
@@ -41,24 +31,39 @@
 <div id="map">
 
 </div>
+<div class="timeDiv">
+<h5>Current time:</h5>
+<h6 class="time_div" id="time"></h6>
+<div class="sunsetDiv">Sun setting at <span id="sunset"></span> today.</div>
+</div>
+
+<div id="weatherDiv" class="weatherDiv">
+<h5>Twelve Hour Forecast:</h5>
+<div id="hourDiv" class="hourDiv"></div>
+</div>
 <script src="{% static 'girodm/js/index.js' %}"></script>
 <script>
 function addWeather(hour){
-
+    let hourDiv = document.getElementById("hourDiv")
+    
     let time = hour.dt
     let hoursToDisplay = moment(time * 1000).format("MMMM Do, h:mm a")
+    let singleHourDiv = document.createElement("div")
+    singleHourDiv.setAttribute('class', 'singleHourDiv')
     let hourP = document.createElement("p");
     let hoursText = document.createTextNode(`${hoursToDisplay}`)
+
     hourP.appendChild(hoursText)
-    let weatherDiv = document.getElementById("weatherDiv")
-    weatherDiv.appendChild(hourP)
+
+    singleHourDiv.appendChild(hourP)
 
     let temperature = hour.temp
     let tempP = document.createElement("p")
     tempP.setAttribute('class', 'temperatureDiv')
     let tempText = document.createTextNode(`Temperature: ${temperature}°`)
+
     tempP.appendChild(tempText)
-    weatherDiv.appendChild(tempP)
+    singleHourDiv.appendChild(tempP)
     
     let icon = hour.weather[0].icon
     let iconUrl = `https://openweathermap.org/img/wn/${icon}.png`
@@ -70,7 +75,7 @@ function addWeather(hour){
     let popP = document.createElement("p")
     let popText = document.createTextNode(`Chance of rain: ${pop}%`)
     popP.appendChild(popText)
-    weatherDiv.appendChild(popP)
+    singleHourDiv.appendChild(popP)
 
     let windSpeed = hour.wind_speed
     Math.ceil(windSpeed)
@@ -95,7 +100,7 @@ function addWeather(hour){
     let windDivP = document.createElement("p")
     let windDivText = document.createTextNode(`Wind direction: ${windDirection}° at ${windSpeed}mph`)
     windDivP.appendChild(windDivText)
-    weatherDiv.appendChild(windDivP)
+    singleHourDiv.appendChild(windDivP)
     
 
     let description = hour.weather[0].description
@@ -103,9 +108,9 @@ function addWeather(hour){
     let descriptionText = document.createTextNode(`Likely ${description}`)
     descriptionP.appendChild(descriptionText)
     descriptionP.appendChild(iconImage)
-    weatherDiv.appendChild(descriptionP)
-                 
-    console.log(hour)
+    singleHourDiv.appendChild(descriptionP)
+    hourDiv.appendChild(singleHourDiv)
+    console.log(`hour ${hour}`)
  
 }
     navigator.geolocation.getCurrentPosition(position => {
