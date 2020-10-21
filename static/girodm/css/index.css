@@ -10,16 +10,18 @@
     align-items: center;
 }
 .weatherDiv{
+    color: white;
     text-align: center;
-    border: 1px solid black;
-    border-radius: 15px;
-    background-color: red;
+    border: .5px solid black;
+    border-radius: 10px;
+    background-color: rgba(36, 128, 0, 0.616)
 }
 .weatherDiv h5{
-    color: white;
+    color: black;
     font-size: 20px !important;
 }
 .singleHourDiv{
+    margin-top: 10px;
     border-radius: 5px;
     display: flex;
     flex-direction: row;

@@ -8,22 +8,22 @@
 {% endblock %}
 
 {% block title %}
- Giro Della Mappa - Home
+Giro Della Mappa - Home
 {% endblock %}
 
 
 {% block content %}
 
 <div class="ridesTodayDiv">
-  <h4>Rides today in your area:</h4>
-  {% if rides|length_is:"0"%}
-    <p>There are no rides today =[. You should consider hosting one!</p>
-  {% endif %}
-  {% for ride in rides%}
+    <h4>Rides today in your area:</h4>
+    {% if rides|length_is:"0"%}
+    <p>There are no rides today. You should consider hosting one!</p>
+    {% endif %}
+    {% for ride in rides%}
 
     <div class="rideDiv">
-    <h3><a href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a></h3>
-    <h6>Starts at {{ride.start_time|date:"h:i A"}}</h6>
+        <h3><a href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a></h3>
+        <h6>Starts at {{ride.start_time|date:"h:i A"}}</h6>
     </div>
     {% endfor %}
     <a class="mobileLink" href="{% url 'girodm:viewrides' %}">Upcoming Rides</a>
@@ -32,76 +32,76 @@
 
 </div>
 <div class="timeDiv">
-<h5>Current time:</h5>
-<h6 class="time_div" id="time"></h6>
-<div class="sunsetDiv">Sun setting at <span id="sunset"></span> today.</div>
+    <h5>Current time:</h5>
+    <h6 class="time_div" id="time"></h6>
+    <div class="sunsetDiv">Sun setting at <span id="sunset"></span> today.</div>
 </div>
 
 <div id="weatherDiv" class="weatherDiv">
-<h5>Twelve Hour Forecast:</h5>
-<div id="hourDiv" class="hourDiv"></div>
+    <h5>Twelve Hour Forecast:</h5>
+    <div id="hourDiv" class="hourDiv"></div>
 </div>
 <script src="{% static 'girodm/js/index.js' %}"></script>
 <script>
-function addWeather(hour){
-    let hourDiv = document.getElementById("hourDiv")
-    
-    let time = hour.dt
-    let hoursToDisplay = moment(time * 1000).format("MMM Do, h:mm a")
-    let singleHourDiv = document.createElement("div")
-    singleHourDiv.setAttribute('class', 'singleHourDiv')
-    let hourP = document.createElement("p");
-    let hoursText = document.createTextNode(`${hoursToDisplay}`)
+    function addWeather(hour) {
+        let hourDiv = document.getElementById("hourDiv")
 
-    hourP.appendChild(hoursText)
+        let time = hour.dt
+        let hoursToDisplay = moment(time * 1000).format("MMM Do, h:mm a")
+        let singleHourDiv = document.createElement("div")
+        singleHourDiv.setAttribute('class', 'singleHourDiv')
+        let hourP = document.createElement("p");
+        let hoursText = document.createTextNode(`${hoursToDisplay}`)
 
-    singleHourDiv.appendChild(hourP)
+        hourP.appendChild(hoursText)
 
-    let temperature = hour.temp
-    let tempP = document.createElement("p")
-    tempP.setAttribute('class', 'temperatureDiv')
-    let tempText = document.createTextNode(`Temperature: ${temperature}°`)
+        singleHourDiv.appendChild(hourP)
 
-    tempP.appendChild(tempText)
-    singleHourDiv.appendChild(tempP)
-    
-    let icon = hour.weather[0].icon
-    let iconUrl = `https://openweathermap.org/img/wn/${icon}.png`
-    let iconImage = document.createElement("img")
-    iconImage.setAttribute("src", iconUrl)
+        let temperature = hour.temp
+        let tempP = document.createElement("p")
+        tempP.setAttribute('class', 'temperatureDiv')
+        let tempText = document.createTextNode(`Temperature: ${temperature}°`)
 
-    let pop = hour.pop
-    pop = (pop * 100)
-    let popP = document.createElement("p")
-    let popText = document.createTextNode(`Chance of rain: ${pop}%`)
-    popP.appendChild(popText)
-    singleHourDiv.appendChild(popP)
+        tempP.appendChild(tempText)
+        singleHourDiv.appendChild(tempP)
 
-    let windSpeed = hour.wind_speed
-    Math.ceil(windSpeed)
-    
-    let windDivP = document.createElement("p")
-    let windDivText = document.createTextNode(`Wind speed: ${windSpeed}mph`)
-    windDivP.appendChild(windDivText)
-    singleHourDiv.appendChild(windDivP)
-    
+        let icon = hour.weather[0].icon
+        let iconUrl = `https://openweathermap.org/img/wn/${icon}.png`
+        let iconImage = document.createElement("img")
+        iconImage.setAttribute("src", iconUrl)
 
-    let description = hour.weather[0].description
-    let descriptionP = document.createElement("p")
-    let descriptionText = document.createTextNode(`${description}`)
-    descriptionP.appendChild(descriptionText)
-    descriptionP.appendChild(iconImage)
-    singleHourDiv.appendChild(descriptionP)
-    hourDiv.appendChild(singleHourDiv)
-    console.log(`hour ${hour}`)
- 
-}
+        let pop = hour.pop
+        pop = (pop * 100)
+        let popP = document.createElement("p")
+        let popText = document.createTextNode(`Chance of rain: ${pop}%`)
+        popP.appendChild(popText)
+        singleHourDiv.appendChild(popP)
+
+        let windSpeed = hour.wind_speed
+        Math.ceil(windSpeed)
+
+        let windDivP = document.createElement("p")
+        let windDivText = document.createTextNode(`Wind speed: ${windSpeed}mph`)
+        windDivP.appendChild(windDivText)
+        singleHourDiv.appendChild(windDivP)
+
+
+        let description = hour.weather[0].description
+        let descriptionP = document.createElement("p")
+        let descriptionText = document.createTextNode(`${description}`)
+        descriptionP.appendChild(descriptionText)
+        descriptionP.appendChild(iconImage)
+        singleHourDiv.appendChild(descriptionP)
+        hourDiv.appendChild(singleHourDiv)
+        console.log(`hour ${hour}`)
+
+    }
     navigator.geolocation.getCurrentPosition(position => {
         let user_latitude = position.coords.latitude
         let user_longitude = position.coords.longitude
         axios({
             method: 'post',
-            url: `https://api.openweathermap.org/data/2.5/onecall?lat=${user_latitude}&lon=${user_longitude}&exclude=&appid={{weather_api_key}}&units=imperial`,  
+            url: `https://api.openweathermap.org/data/2.5/onecall?lat=${user_latitude}&lon=${user_longitude}&exclude=&appid={{weather_api_key}}&units=imperial`,
         }).then((response) => {
             console.log(response)
             let hourlyForecast = response.data.hourly
@@ -109,7 +109,7 @@ function addWeather(hour){
             let sunset = moment(sunSetResponse * 1000).format("h:mm a")
             sunsetDiv = document.getElementById("sunset")
             sunsetDiv.innerHTML = sunset
-            for(i=0; i < 11; i++){
+            for (i = 0; i < 11; i++) {
                 let hour = hourlyForecast[i]
                 addWeather(hour)
             }
@@ -117,6 +117,6 @@ function addWeather(hour){
     })
 </script>
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
-  type="text/javascript"></script>
+    src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initMap"
+    type="text/javascript"></script>
 {% endblock %}
