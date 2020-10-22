@@ -257,3 +257,7 @@ def delete_ride(request, code):
     ride = Ride.objects.get(code=code)
     ride.delete()
     return HttpResponseRedirect(reverse('girodm:user'))
+
+def marketplace(request):
+    context = {'google_maps_api_key': settings.GOOGLE_API_KEY}
+    return render(request,'girodm/marketplace.html', context)

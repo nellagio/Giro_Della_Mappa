@@ -55,7 +55,19 @@
     }
 }
 @media (min-width: 1200px) {
-    
+    .weatherDiv{
+        width: 600px;
+    }
+    .weatherDiv h5{
+        font-size: 30px !important;
+    }
+    .singleHourDiv{
+        display: flex;
+        flex-direction: column;
+        border:1px solid black;
+        background-color: rgb(124, 124, 124);
+        padding: 2px;
+    }
     #map {
         width: 650px;
         height: 650px;

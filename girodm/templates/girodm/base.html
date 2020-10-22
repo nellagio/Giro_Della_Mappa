@@ -43,6 +43,7 @@
       </button>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="{% url 'girodm:viewrides' %}">Upcoming Rides</a>
+        <a class="dropdown-item" href="{% url 'girodm:marketplace' %}">Marketplace</a>
         <a class="dropdown-item" href="{% url 'girodm:about' %}">Our Mission</a>
         <div class="dropdown-divider"></div>
         {% if request.user.is_authenticated %}
@@ -66,6 +67,7 @@
     <h4>Logged in as: <a class="headerLink" title="user home" href="{% url 'girodm:user' %}">{{request.user}}</a></h4>
     {% endif %}
     <a class="headerLink" href="{% url 'girodm:viewrides' %}">Upcoming Rides</a>
+    <a class="headerLink" href="{% url 'girodm:marketplace' %}">Marketplace</a>
     <a class="headerLink" href="{% url 'girodm:about' %}">Our Mission</a>
 
   </div>
