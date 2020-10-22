@@ -13,5 +13,64 @@ Giro Della Mappa - Home
 
 
 {% block content %}
+<div class="itemDiv">
+    <div class="bikeMountDiv">
+    <h2>Fork Mounted Bike Light</h2>
+    <hr>
+    <h5>$10.00 + $5.00 shipping</h5>
+    <hr>
+    <p>asdiofhouiahsfuiohwufhiaushdfuihasdusadhfisdhfu</p>
+    <p>asdfjoaisdjfisdf</p>
+    <p>asdiofhouiahsfsduifhilusadhfisdhfu</p>
+    <p>asdfjoaisdjfisdf</p>
+    <p>asdiofhouuifhilusadhfisdhfu</p>
+    <p>asdfjoaisdjfisdf</p>
+    <div class="imgDiv">
+        
+        <img class="mountImg" src="{% static 'girodm/images/mount2.jpg' %}">
+        <img class="mountImg" src="{% static 'girodm/images/mount3.jpg' %}">
+        
+        <img class="mountImg2" src="{% static 'girodm/images/mount1.jpg' %}">
+        <img class="mountImg2" src="{% static 'girodm/images/mount5.jpg' %}">
 
+        <img class="mountImg" src="{% static 'girodm/images/mount4.jpg' %}">
+    </div>
+    </div>
+    <div id="smart-button-container">
+      <div style="text-align: center;">
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>
+</div>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script>
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'pill',
+          color: 'black',
+          layout: 'vertical',
+          label: 'buynow',
+          
+        },
+
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{"description":"Fork mount for bike light\nHardware is included","amount":{"currency_code":"USD","value":15,"breakdown":{"item_total":{"currency_code":"USD","value":10},"shipping":{"currency_code":"USD","value":5},"tax_total":{"currency_code":"USD","value":0}}}}]
+          });
+        },
+
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            alert('Transaction completed by ' + details.payer.name.given_name + '!');
+          });
+        },
+
+        onError: function(err) {
+          console.log(err);
+        }
+      }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+  </script>
 {% endblock content %}
