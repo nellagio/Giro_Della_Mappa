@@ -19,8 +19,6 @@ def handler404(request, exception):
 
     
 def handler500(request):
-
-    print('hello world')
     return render(request,'girodm/500.html', status=500)
 
 def index(request):
@@ -261,3 +259,11 @@ def delete_ride(request, code):
 def marketplace(request):
     context = {'google_maps_api_key': settings.GOOGLE_API_KEY}
     return render(request,'girodm/marketplace.html', context)
+
+def cleaner(request):
+    context = {'google_maps_api_key': settings.GOOGLE_API_KEY}
+    return render(request,'girodm/cleaner.html', context)
+
+def mount(request):
+    context = {'google_maps_api_key': settings.GOOGLE_API_KEY}
+    return render(request,'girodm/mount.html', context)

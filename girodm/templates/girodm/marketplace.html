@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block title %}
-Giro Della Mappa - Home
+Giro Della Mappa - Marketplace
 {% endblock %}
 
 
@@ -17,63 +17,24 @@ Giro Della Mappa - Home
     <div class="bikeMountDiv">
     <h2>Fork Mounted Bike Light</h2>
     <hr>
-    <h5>$10.00 + $5.00 shipping</h5>
+    <h5>Starting at $5 + shipping</h5>
+    <a href="{% url 'girodm:mount' %}"><img class="mountImg" src="{% static 'girodm/images/mount2.jpg' %}"></a>
     <hr>
     <a style="color: whitesmoke; 
               text-decoration: underline;"
-       href="#smart-button-container">Buy Now!</a>
+       href="{% url 'girodm:mount' %}">Buy Now!</a>
     <hr>
-    <p>3D printed and Aluminum versions</p>
-    <p>All mounts include mounting hardware for standard eyelets </p>
-    <p>PLA version: Cost effective solution to getting your light low | $5 </p>
-    <p>TPU version: Slight "squish" or give to the mount | $10 </p>
-    <p>!NEW! Aluminum: All metal? Yes. Never gone rust? Nope!| $20 </p>
-    <div class="imgDiv">
-        
-        <img class="mountImg" src="{% static 'girodm/images/mount2.jpg' %}">
-        <img class="mountImg" src="{% static 'girodm/images/mount3.jpg' %}">
-        
-        <img class="mountImg2" src="{% static 'girodm/images/mount1.jpg' %}">
-        <img class="mountImg2" src="{% static 'girodm/images/mount5.jpg' %}">
 
-        <img class="mountImg" src="{% static 'girodm/images/mount4.jpg' %}">
-    </div>
-    </div>
-    <div id="smart-button-container">
-      <div style="text-align: center;">
-        <div id="paypal-button-container"></div>
-      </div>
+    <div class="cleanerDiv">
+      <h2>Mini Chain Cleaner</h2>
+      <hr>
+      <h5>$12 + shipping</h5>
+      <a href="{% url 'girodm:cleaner' %}"><img class="mountImg" src="{% static 'girodm/images/cleaner2.jpg' %}"></a>
+      <hr>
+      <a style="color: whitesmoke; 
+                text-decoration: underline;"
+        href="{% url 'girodm:cleaner' %}">Buy Now!</a>
+      <hr>
     </div>
 </div>
-  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
-  <script>
-    function initPayPalButton() {
-      paypal.Buttons({
-        style: {
-          shape: 'pill',
-          color: 'black',
-          layout: 'vertical',
-          label: 'buynow',
-          
-        },
-
-        createOrder: function(data, actions) {
-          return actions.order.create({
-            purchase_units: [{"description":"Fork mount for bike light\nHardware is included","amount":{"currency_code":"USD","value":15,"breakdown":{"item_total":{"currency_code":"USD","value":10},"shipping":{"currency_code":"USD","value":5},"tax_total":{"currency_code":"USD","value":0}}}}]
-          });
-        },
-
-        onApprove: function(data, actions) {
-          return actions.order.capture().then(function(details) {
-            alert('Transaction completed by ' + details.payer.name.given_name + '!');
-          });
-        },
-
-        onError: function(err) {
-          console.log(err);
-        }
-      }).render('#paypal-button-container');
-    }
-    initPayPalButton();
-  </script>
 {% endblock content %}
