@@ -35,7 +35,7 @@
   <div class="mobileNavbar">
     <a href="{% url 'girodm:index' %}"><img title="home page" class="logo_img" alt="logo of site"
       src="{% static 'girodm/images/flippedLogo.png' %}" href="{% url 'girodm:index' %}"></a>
-    <a href="{% url 'girodm:index' %}"><h4 class="logo">Giro della Mappa</h4></a>
+    <a href="{% url 'girodm:index' %}"><h4 class="logo">PDX Bike Map</h4></a>
     <div class="btn-group dropleft">
       <button type="button" class="btn btn-alert dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <img title="home page" class="logo_img" alt="logo of site"
@@ -62,7 +62,7 @@
   <div class="navbar">
     <a href="{% url 'girodm:index' %}"><img title="home page" class="logo_img" alt="logo of site"
         src="{% static 'girodm/images/flippedLogo.png' %}" href="{% url 'girodm:index' %}"></a>
-    <a href="{% url 'girodm:index' %}"><h2 class="logo" >Giro della Mappa</h2></a>
+    <a href="{% url 'girodm:index' %}"><h2 class="logo" >PDX Ride Map</h2></a>
     {% if request.user.is_authenticated %}
     <h4>Logged in as: <a class="headerLink" title="user home" href="{% url 'girodm:user' %}">{{request.user}}</a></h4>
     {% endif %}
@@ -86,7 +86,7 @@
     <a class="footerLink" href="{% url 'girodm:login' %}">Login</a>
     {% endif %}
   
-    <h5>Girodm &copy; 2020</h5>
+    <h5>PDXRideMap.com &copy; 2020</h5>
     <img class="socialIcons" src="{% static 'girodm/images/instagramDesktop.svg' %}">
 
     <img class="socialIcons" src="{% static 'girodm/images/facebookDesktop.svg' %}">
@@ -100,10 +100,10 @@
       <a class="footerLink" href="{% url 'girodm:login' %}">Login</a>
     {% endif %}
 
-    <h3>Girodm &copy; 2020</h3>
-    <img class="socialIcons" src="{% static 'girodm/images/instagramDesktop.svg' %}">
+    <h3><a style="color: white;" href="{% url 'girodm:index' %}">PDXRideMap.com</a> &copy; 2020</h3>
+    <a href="https://www.instagram.com/pdxridemap/" target="_blank" ><img class="socialIcons" src="{% static 'girodm/images/instagramDesktop.svg' %}"></a>
 
-    <img class="socialIcons" src="{% static 'girodm/images/facebookDesktop.svg' %}">
+    {% comment %} <img class="socialIcons" src="{% static 'girodm/images/facebookDesktop.svg' %}"> {% endcomment %}
     {% endblock %}
   </div>
 </body>
