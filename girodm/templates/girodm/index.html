@@ -62,7 +62,7 @@ Home - PDX Ride Map
         let temperature = hour.temp
         let tempP = document.createElement("p")
         tempP.setAttribute('class', 'temperatureDiv')
-        let tempText = document.createTextNode(`Temperature: ${temperature}°`)
+        let tempText = document.createTextNode(`Temp: ${temperature}°`)
 
         tempP.appendChild(tempText)
         singleHourDiv.appendChild(tempP)
@@ -75,7 +75,7 @@ Home - PDX Ride Map
         let pop = hour.pop
         pop = (pop * 100)
         let popP = document.createElement("p")
-        let popText = document.createTextNode(`Chance of rain: ${pop}%`)
+        let popText = document.createTextNode(`Rain: ${pop}% chance`)
         popP.appendChild(popText)
         singleHourDiv.appendChild(popP)
 
@@ -83,7 +83,7 @@ Home - PDX Ride Map
         Math.ceil(windSpeed)
 
         let windDivP = document.createElement("p")
-        let windDivText = document.createTextNode(`Wind speed: ${windSpeed}mph`)
+        let windDivText = document.createTextNode(`Wind: ${windSpeed} mph`)
         windDivP.appendChild(windDivText)
         singleHourDiv.appendChild(windDivP)
 
