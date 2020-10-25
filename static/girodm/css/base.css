@@ -120,6 +120,7 @@ a:hover{
         display: none;
     }
     .navbar{
+        color: white;
         height: 95px;
         display: flex;
         align-items: center;

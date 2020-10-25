@@ -35,6 +35,7 @@
 .weatherDiv h5{
     font-size: 20px !important;
 }
+
 .singleHourDiv{
     margin-top: 10px;
     border-radius: 5px;
@@ -68,7 +69,7 @@
     }
     .singleHourDiv{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         border:1px solid black;
         background-color: rgb(124, 124, 124);
         padding: 2px;
