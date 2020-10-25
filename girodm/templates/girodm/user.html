@@ -12,18 +12,18 @@
  {{request.user}} - PDX Ride Map
 {% endblock %}
 {% block content %}
-<h3>Hello, {{request.user.first_name}} </h3>
+<h3 style="padding-bottom: 5px;">Hello, {{request.user.first_name}} </h3>
         <div class="hostDiv">
-        <a href="{% url 'girodm:host' %}">Host a ride</a>
+        <a class="buttonLinks" style="padding-bottom: 2px" href="{% url 'girodm:host' %}">Host a ride</a>
         </div>
-        <a href="{% url 'girodm:viewrides' %}">Upcoming Rides</a>
+        <a class="buttonLinks" style="margin-top: 10px;" href="{% url 'girodm:viewrides' %}">Upcoming Rides</a>
         {% if rides %}
           <h3>You're the host of these rides:</h3>
           {% for ride in rides %}
           <a title="View the public facing page." href="{% url "girodm:detail" ride.code %}">{{ride.ride_name}}</a>
-          <p class="viewedPtag">Users have viewed this ride information {{ride.times_clicked}} times.</p> 
-          <a title="Edit your ride." href="{% url "girodm:editridepage" ride.code %}">Edit this ride</a>
-          <a title="Delete this ride forever." href="{% url "girodm:deleteride" ride.code %}">Delete this ride</a>
+          <p class="viewedPtag">Viewed {{ride.times_clicked}} times by visitors.</p> 
+          <a class="buttonLinks" title="Edit your ride." href="{% url "girodm:editridepage" ride.code %}">Edit this ride</a>
+          <a class="buttonLinks" title="Delete this ride forever." href="{% url "girodm:deleteride" ride.code %}">Delete this ride</a>
           <br/>
           {% endfor %}
           {% else %}

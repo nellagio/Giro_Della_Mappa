@@ -46,7 +46,22 @@ html {
     display: none;
     margin-bottom: 20px;
 }
-
+.buttonLinks{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.226);
+    margin-bottom: 15px;
+    padding: 5px;
+    box-shadow: 2px 3px #888888;
+}
+a{
+    color: #333333;
+    
+}
+a:hover{
+    color: white;
+    text-decoration: none;
+}
 .main{
     padding-right: 15px;
     padding-left: 15px;
@@ -55,14 +70,6 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-a{
-    color: #333333;
-    
-}
-a:hover{
-    text-decoration: none;
-    color: green;
 }
 .footerLink{
     color: white;
