@@ -11,7 +11,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <script src="{% static 'girodm/js/base.js' %}"></script>
+
   <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -34,7 +36,7 @@
 
   <div class="mobileNavbar">
     <a href="{% url 'girodm:index' %}"><img title="home page" class="logo_img" alt="logo of site"
-      src="{% static 'girodm/images/flippedLogo.png' %}" href="{% url 'girodm:index' %}"></a>
+      src="{% static 'girodm/images/bike.svg' %}" href="{% url 'girodm:index' %}"></a>
     <a href="{% url 'girodm:index' %}"><h4 class="logo">PDX Ride Map</h4></a>
     <div class="btn-group dropleft">
       <button type="button" class="btn btn-alert dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -61,7 +63,7 @@
 
   <div class="navbar">
     <a href="{% url 'girodm:index' %}"><img title="home page" class="logo_img" alt="logo of site"
-        src="{% static 'girodm/images/flippedLogo.png' %}" href="{% url 'girodm:index' %}"></a>
+        src="{% static 'girodm/images/bike.svg' %}" href="{% url 'girodm:index' %}"></a>
     <a href="{% url 'girodm:index' %}"><h2 class="logo" >PDX Ride Map</h2></a>
     {% if request.user.is_authenticated %}
     <h4>Logged in as: <a class="headerLink" title="user home" href="{% url 'girodm:user' %}">{{request.user}}</a></h4>
