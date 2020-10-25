@@ -5,9 +5,25 @@
     border-radius: 15px;
 }
 .timeDiv{
+    font-size: 20px !important;
+    margin-top: 15px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
+    text-align: center;
+    border: .5px solid black;
+    border-radius: 10px;
+    background-color: rgba(0, 81, 255, 0.664);
+}
+.timeInfoDiv{
+    border-top: .5px solid black;
+    border-radius: 10px;
+    background-color: rgb(124, 124, 124);
+    padding-top: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 .weatherDiv{
     color: white;
@@ -17,7 +33,6 @@
     background-color: rgba(0, 81, 255, 0.664);
 }
 .weatherDiv h5{
-    color: black;
     font-size: 20px !important;
 }
 .singleHourDiv{
