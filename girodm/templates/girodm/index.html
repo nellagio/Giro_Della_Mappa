@@ -11,6 +11,7 @@
 Home - PDX Ride Map
 {% endblock %}
 
+{% comment %} javascript add class to element {% endcomment %}
 
 {% block content %}
 
@@ -41,54 +42,73 @@ Home - PDX Ride Map
 
 <div id="weatherDiv" class="weatherDiv">
     <h5>Twelve Hour Forecast:</h5>
-    <div id="hourDiv" class="hourDiv"></div>
+    <div id="injectDiv">
+    </div>
 </div>
 <script src="{% static 'girodm/js/index.js' %}"></script>
 <script>
     function addWeather(hour) {
-        let hourDiv = document.getElementById("hourDiv")
+        
+        let injectDiv = document.getElementById("injectDiv")
+        
+        let singleHourDiv = document.createElement("div")
+        singleHourDiv.setAttribute('class', 'singleHourDiv')
 
         let time = hour.dt
         let hoursToDisplay = moment(time * 1000).format("MMM Do, h:mm a")
-        let singleHourDiv = document.createElement("div")
-        singleHourDiv.setAttribute('class', 'singleHourDiv')
+
+        let hourDiv = document.createElement("div")
         let hourP = document.createElement("p");
         let hoursText = document.createTextNode(`${hoursToDisplay}`)
 
         hourP.appendChild(hoursText)
+        hoursText.appendChild(singleHourDiv)
+        singleHourDiv.appendChild(hourDiv)
 
-        singleHourDiv.appendChild(hourP)
+        let temperature = hour.temp.toFixed()
 
-        let temperature = hour.temp
-        let tempP = document.createElement("p")
-        tempP.setAttribute('class', 'temperatureDiv')
+        let temperatureDiv = document.createElement("div")
+        temperatureDiv.setAttribute('class', 'temperatureDiv')
+        let temperatureP = document.createElement("p")
         let tempText = document.createTextNode(`Temp: ${temperature}°`)
 
-        tempP.appendChild(tempText)
-        singleHourDiv.appendChild(tempP)
+        temperatureP.appendChild(tempText)
+        temperatureDiv.appendChild(temperatureP)
+        singleHourDiv.appendChild(temperatureDiv)
 
         let icon = hour.weather[0].icon
         let iconUrl = `https://openweathermap.org/img/wn/${icon}.png`
+        let iconDiv = document.createElement("div")
         let iconImage = document.createElement("img")
+
         iconImage.setAttribute("src", iconUrl)
+
+        iconDiv.appendChild(iconImage)
+        singleHourDiv.appendChild(IconDiv)
 
         let pop = hour.pop
         pop = (pop * 100)
+
+        let rainDiv = document.createElement("div")
+        rainDiv.setAttribute('class', 'rainDiv')
         let popP = document.createElement("p")
         let popText = document.createTextNode(`Rain: ${pop}% chance`)
         popP.appendChild(popText)
         singleHourDiv.appendChild(popP)
 
-        let windSpeed = hour.wind_speed
-        Math.ceil(windSpeed)
+        let windSpeed = hour.wind_speed.toFixed()
 
+        let windDiv = document.createElement("div")
         let windDivP = document.createElement("p")
+        windDivP.setAttribute('class', 'windDiv')
         let windDivText = document.createTextNode(`Wind: ${windSpeed} mph`)
+
         windDivP.appendChild(windDivText)
         singleHourDiv.appendChild(windDivP)
 
 
         let description = hour.weather[0].description
+
         let descriptionP = document.createElement("p")
         let descriptionText = document.createTextNode(`${description}`)
         descriptionP.appendChild(descriptionText)
